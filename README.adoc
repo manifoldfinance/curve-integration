@@ -1,0 +1,3872 @@
+== Curve Finance Integration Kit
+
+____
+Notice: this falls under Curve Finances existing license
+____
+
+=== Documentation
+
+* link:#curve-finance-integration-kit[Curve Finance Integration Kit]
+** link:#documentation[Documentation]
+** link:#contract--icurvefi-deposity-[contract `ICurveFi_DepositY`]
+*** link:#methods[Methods]
+**** link:#-add-liquidity-[`add_liquidity`]
+**** link:#-coins-[`coins`]
+**** link:#-curve-[`curve`]
+**** link:#-remove-liquidity-[`remove_liquidity`]
+**** link:#-remove-liquidity-imbalance-[`remove_liquidity_imbalance`]
+**** link:#-token-[`token`]
+**** link:#-underlying-coins-[`underlying_coins`]
+**** link:#-underlying-coins--1[`underlying_coins`]
+** link:#interface--icurvefi-gauge-[interface `ICurveFi_Gauge`]
+*** link:#methods-1[Methods]
+**** link:#-balanceof-[`balanceOf`]
+**** link:#-claimable-tokens-[`claimable_tokens`]
+**** link:#-crv-token-[`crv_token`]
+**** link:#-deposit-[`deposit`]
+**** link:#-integrate-fraction-[`integrate_fraction`]
+**** link:#-lp-token-[`lp_token`]
+**** link:#-minter-[`minter`]
+**** link:#-user-checkpoint-[`user_checkpoint`]
+**** link:#-withdraw-[`withdraw`]
+** link:#interface--icurvefi-minter-[interface `ICurveFi_Minter`]
+*** link:#methods-2[Methods]
+**** link:#-mint-[`mint`]
+**** link:#-mint-for-[`mint_for`]
+**** link:#-minted-[`minted`]
+**** link:#-toggle-approve-mint-[`toggle_approve_mint`]
+**** link:#-token--1[`token`]
+** link:#interface--icurvefi-swapy-[interface `ICurveFi_SwapY`]
+*** link:#methods-3[Methods]
+**** link:#-add-liquidity--1[`add_liquidity`]
+**** link:#-balances-[`balances`]
+**** link:#-calc-token-amount-[`calc_token_amount`]
+**** link:#-coins--1[`coins`]
+**** link:#-remove-liquidity--1[`remove_liquidity`]
+**** link:#-remove-liquidity-imbalance--1[`remove_liquidity_imbalance`]
+** link:#interface--ierc20-[interface `IERC20`]
+*** link:#events[Events]
+**** link:#-approval-[`Approval`]
+**** link:#-transfer-[`Transfer`]
+*** link:#methods-4[Methods]
+**** link:#-allowance-[`allowance`]
+**** link:#-approve-[`approve`]
+**** link:#-balanceof--1[`balanceOf`]
+**** link:#-totalsupply-[`totalSupply`]
+**** link:#-transfer-[`transfer`]
+**** link:#-transferfrom-[`transferFrom`]
+** link:#contract--iyerc20-[contract `IYERC20`]
+*** link:#methods-5[Methods]
+**** link:#-allowance--1[`allowance`]
+**** link:#-approve--1[`approve`]
+**** link:#-balanceof--2[`balanceOf`]
+**** link:#-decimals-[`decimals`]
+**** link:#-deposit--1[`deposit`]
+**** link:#-getpriceperfullshare-[`getPricePerFullShare`]
+**** link:#-name-[`name`]
+**** link:#-symbol-[`symbol`]
+**** link:#-token--2[`token`]
+**** link:#-totalsupply--1[`totalSupply`]
+**** link:#-transfer--1[`transfer`]
+**** link:#-transferfrom--1[`transferFrom`]
+**** link:#-withdraw--1[`withdraw`]
+** link:#contract--initializable-[contract `Initializable`]
+** link:#contract--minterrole-[contract `MinterRole`]
+*** link:#events-1[Events]
+**** link:#-minteradded-[`MinterAdded`]
+**** link:#-minterremoved-[`MinterRemoved`]
+*** link:#methods-6[Methods]
+**** link:#-addminter-[`addMinter`]
+**** link:#-initialize-[`initialize`]
+**** link:#-isminter-[`isMinter`]
+**** link:#-renounceminter-[`renounceMinter`]
+** link:#library--roles-[library `Roles`]
+** link:#library--safeerc20-[library `SafeERC20`]
+** link:#library--safemath-[library `SafeMath`]
+** link:#contract--stub-curvefi-deposity-[contract
+`Stub_CurveFi_DepositY`]
+*** link:#methods-7[Methods]
+**** link:#---curve-[`__curve`]
+**** link:#---token-[`__token`]
+**** link:#-add-liquidity--2[`add_liquidity`]
+**** link:#-coins--2[`coins`]
+**** link:#-curve--1[`curve`]
+**** link:#-initialize--1[`initialize`]
+**** link:#-n-coins-[`N_COINS`]
+**** link:#-remove-liquidity--2[`remove_liquidity`]
+**** link:#-remove-liquidity-imbalance--2[`remove_liquidity_imbalance`]
+**** link:#-token--3[`token`]
+**** link:#-underlying-coins--2[`underlying_coins`]
+**** link:#-underlying-coins--3[`underlying_coins`]
+** link:#contract--stub-curvefi-gauge-[contract `Stub_CurveFi_Gauge`]
+*** link:#methods-8[Methods]
+**** link:#---crv-token-[`__crv_token`]
+**** link:#---integrate-fraction-[`__integrate_fraction`]
+**** link:#---lp-token-[`__lp_token`]
+**** link:#---minter-[`__minter`]
+**** link:#--update-liquidity-limit-[`_update_liquidity_limit`]
+**** link:#-balanceof--3[`balanceOf`]
+**** link:#-claimable-tokens--1[`claimable_tokens`]
+**** link:#-crv-token--1[`crv_token`]
+**** link:#-deposit--2[`deposit`]
+**** link:#-initial-rate-[`INITIAL_RATE`]
+**** link:#-initialize--2[`initialize`]
+**** link:#-integrate-checkpoint-of-[`integrate_checkpoint_of`]
+**** link:#-integrate-fraction--1[`integrate_fraction`]
+**** link:#-integrate-inv-supply-[`integrate_inv_supply`]
+**** link:#-integrate-inv-supply-of-[`integrate_inv_supply_of`]
+**** link:#-lp-token--1[`lp_token`]
+**** link:#-minter--1[`minter`]
+**** link:#-tokenless-production-[`TOKENLESS_PRODUCTION`]
+**** link:#-totalsupply--2[`totalSupply`]
+**** link:#-user-checkpoint--1[`user_checkpoint`]
+**** link:#-withdraw--2[`withdraw`]
+**** link:#-working-balances-[`working_balances`]
+**** link:#-working-supply-[`working_supply`]
+**** link:#-year-[`YEAR`]
+** link:#contract--stub-curvefi-lptokeny-[contract
+`Stub_CurveFi_LPTokenY`]
+*** link:#events-2[Events]
+**** link:#-approval--1[`Approval`]
+**** link:#-minteradded--1[`MinterAdded`]
+**** link:#-minterremoved--1[`MinterRemoved`]
+**** link:#-transfer--1[`Transfer`]
+*** link:#methods-9[Methods]
+**** link:#-addminter--1[`addMinter`]
+**** link:#-allowance--2[`allowance`]
+**** link:#-approve--2[`approve`]
+**** link:#-balanceof--4[`balanceOf`]
+**** link:#-burn-[`burn`]
+**** link:#-burnfrom-[`burnFrom`]
+**** link:#-decimals--1[`decimals`]
+**** link:#-decreaseallowance-[`decreaseAllowance`]
+**** link:#-increaseallowance-[`increaseAllowance`]
+**** link:#-initialize--3[`initialize`]
+**** link:#-initialize--4[`initialize`]
+**** link:#-initialize--5[`initialize`]
+**** link:#-isminter--1[`isMinter`]
+**** link:#-mint--1[`mint`]
+**** link:#-name--1[`name`]
+**** link:#-renounceminter--1[`renounceMinter`]
+**** link:#-symbol--1[`symbol`]
+**** link:#-totalsupply--3[`totalSupply`]
+**** link:#-transfer--2[`transfer`]
+**** link:#-transferfrom--2[`transferFrom`]
+** link:#contract--stub-curvefi-minter-[contract `Stub_CurveFi_Minter`]
+*** link:#methods-10[Methods]
+**** link:#---minted-[`__minted`]
+**** link:#---token--1[`__token`]
+**** link:#-allowed-to-mint-for-[`allowed_to_mint_for`]
+**** link:#-initialize--6[`initialize`]
+**** link:#-mint--2[`mint`]
+**** link:#-mint-for--1[`mint_for`]
+**** link:#-minted--1[`minted`]
+**** link:#-toggle-approve-mint--1[`toggle_approve_mint`]
+**** link:#-token--4[`token`]
+** link:#contract--stub-curvefi-swapy-[contract `Stub_CurveFi_SwapY`]
+*** link:#methods-11[Methods]
+**** link:#---balances-[`__balances`]
+**** link:#---coins-[`__coins`]
+**** link:#---fee-[`__fee`]
+**** link:#---token--2[`__token`]
+**** link:#---underlying-coins-[`__underlying_coins`]
+**** link:#-a-[`A`]
+**** link:#-add-liquidity--3[`add_liquidity`]
+**** link:#-balances--1[`balances`]
+**** link:#-calc-token-amount--1[`calc_token_amount`]
+**** link:#-coins--3[`coins`]
+**** link:#-fee-[`fee`]
+**** link:#-initialize--7[`initialize`]
+**** link:#-n-coins--1[`N_COINS`]
+**** link:#-remove-liquidity--3[`remove_liquidity`]
+**** link:#-remove-liquidity-imbalance--3[`remove_liquidity_imbalance`]
+** link:#contract--stub-erc20-[contract `Stub_ERC20`]
+*** link:#events-3[Events]
+**** link:#-approval--2[`Approval`]
+**** link:#-minteradded--2[`MinterAdded`]
+**** link:#-minterremoved--2[`MinterRemoved`]
+**** link:#-transfer--2[`Transfer`]
+*** link:#methods-12[Methods]
+**** link:#-addminter--2[`addMinter`]
+**** link:#-allowance--3[`allowance`]
+**** link:#-approve--3[`approve`]
+**** link:#-balanceof--5[`balanceOf`]
+**** link:#-decimals--2[`decimals`]
+**** link:#-decreaseallowance--1[`decreaseAllowance`]
+**** link:#-increaseallowance--1[`increaseAllowance`]
+**** link:#-initialize--8[`initialize`]
+**** link:#-initialize--9[`initialize`]
+**** link:#-initialize--10[`initialize`]
+**** link:#-isminter--2[`isMinter`]
+**** link:#-mint--3[`mint`]
+**** link:#-name--2[`name`]
+**** link:#-renounceminter--2[`renounceMinter`]
+**** link:#-symbol--2[`symbol`]
+**** link:#-totalsupply--4[`totalSupply`]
+**** link:#-transfer--3[`transfer`]
+**** link:#-transferfrom--3[`transferFrom`]
+** link:#contract--stub-yerc20-[contract `Stub_YERC20`]
+*** link:#events-4[Events]
+**** link:#-approval--3[`Approval`]
+**** link:#-transfer--3[`Transfer`]
+*** link:#methods-13[Methods]
+**** link:#-allowance--4[`allowance`]
+**** link:#-approve--4[`approve`]
+**** link:#-balanceof--6[`balanceOf`]
+**** link:#-decimals--3[`decimals`]
+**** link:#-decreaseallowance--2[`decreaseAllowance`]
+**** link:#-deposit--3[`deposit`]
+**** link:#-getpriceperfullshare--1[`getPricePerFullShare`]
+**** link:#-increaseallowance--2[`increaseAllowance`]
+**** link:#-initialize--11[`initialize`]
+**** link:#-initialize--12[`initialize`]
+**** link:#-name--3[`name`]
+**** link:#-symbol--3[`symbol`]
+**** link:#-token--5[`token`]
+**** link:#-totalsupply--5[`totalSupply`]
+**** link:#-transfer--4[`transfer`]
+**** link:#-transferfrom--4[`transferFrom`]
+**** link:#-underlying-[`underlying`]
+**** link:#-withdraw--3[`withdraw`]
+** link:#usage[Usage]
+** link:#testing[Testing]
+** link:#support[Support]
+
+=== contract `ICurveFi_DepositY`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_DepositY.sol##L8[contracts/curvefi/ICurveFi_DepositY.sol:8]_
+
+==== Methods
+
+===== `add_liquidity`
+
+• `function add_liquidity(uint256[4] uamounts, uint256 min_mint_amount)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_DepositY.sol##L9[contracts/curvefi/ICurveFi_DepositY.sol:9]_
+
+*_Parameters_*
+
+| Name | Type | |
+---------------------------------------------------------------- |
+------------ | --- | |
+link:contracts/curvefi/ICurveFi_DepositY.sol##L9[`uamounts`] |
+`uint256[4]` | | |
+link:contracts/curvefi/ICurveFi_DepositY.sol##L9[`min_mint_amount`] |
+`uint256` | |
+
+'''''
+
+===== `coins`
+
+• `constant function coins(int128 i): (address)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_DepositY.sol##L15[contracts/curvefi/ICurveFi_DepositY.sol:15]_
+
+*_Parameters_*
+
+| Name | Type | | --------------------------------------------------- |
+-------- | --- | |
+link:contracts/curvefi/ICurveFi_DepositY.sol##L15[`i`] | `int128` | |
+
+*_Returns_*
+
+| Name | Type | | --------------------------------------------------- |
+--------- | --- | |
+link:contracts/curvefi/ICurveFi_DepositY.sol##L15[`0`] | `address` | |
+
+'''''
+
+===== `curve`
+
+• `constant function curve(): (address)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_DepositY.sol##L21[contracts/curvefi/ICurveFi_DepositY.sol:21]_
+
+*_Returns_*
+
+| Name | Type | | --------------------------------------------------- |
+--------- | --- | |
+link:contracts/curvefi/ICurveFi_DepositY.sol##L21[`0`] | `address` | |
+
+'''''
+
+===== `remove_liquidity`
+
+• `function remove_liquidity(uint256 _amount, uint256[4] min_uamounts)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_DepositY.sol##L11[contracts/curvefi/ICurveFi_DepositY.sol:11]_
+
+*_Parameters_*
+
+| Name | Type | |
+-------------------------------------------------------------- |
+------------ | --- | |
+link:contracts/curvefi/ICurveFi_DepositY.sol##L11[`_amount`] | `uint256`
+| | | link:contracts/curvefi/ICurveFi_DepositY.sol##L11[`min_uamounts`]
+| `uint256[4]` | |
+
+'''''
+
+===== `remove_liquidity_imbalance`
+
+•
+`function remove_liquidity_imbalance(uint256[4] uamounts, uint256 max_burn_amount)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_DepositY.sol##L13[contracts/curvefi/ICurveFi_DepositY.sol:13]_
+
+*_Parameters_*
+
+| Name | Type | |
+----------------------------------------------------------------- |
+------------ | --- | |
+link:contracts/curvefi/ICurveFi_DepositY.sol##L13[`uamounts`] |
+`uint256[4]` | | |
+link:contracts/curvefi/ICurveFi_DepositY.sol##L13[`max_burn_amount`] |
+`uint256` | |
+
+'''''
+
+===== `token`
+
+• `constant function token(): (address)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_DepositY.sol##L23[contracts/curvefi/ICurveFi_DepositY.sol:23]_
+
+*_Returns_*
+
+| Name | Type | | --------------------------------------------------- |
+--------- | --- | |
+link:contracts/curvefi/ICurveFi_DepositY.sol##L23[`0`] | `address` | |
+
+'''''
+
+===== `underlying_coins`
+
+• `constant function underlying_coins(int128 i): (address)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_DepositY.sol##L17[contracts/curvefi/ICurveFi_DepositY.sol:17]_
+
+*_Parameters_*
+
+| Name | Type | | --------------------------------------------------- |
+-------- | --- | |
+link:contracts/curvefi/ICurveFi_DepositY.sol##L17[`i`] | `int128` | |
+
+*_Returns_*
+
+| Name | Type | | --------------------------------------------------- |
+--------- | --- | |
+link:contracts/curvefi/ICurveFi_DepositY.sol##L17[`0`] | `address` | |
+
+'''''
+
+===== `underlying_coins`
+
+• `constant function underlying_coins(): (address[4])`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_DepositY.sol##L19[contracts/curvefi/ICurveFi_DepositY.sol:19]_
+
+*_Returns_*
+
+| Name | Type | | --------------------------------------------------- |
+------------ | --- | |
+link:contracts/curvefi/ICurveFi_DepositY.sol##L19[`0`] | `address[4]` |
+|
+
+=== interface `ICurveFi_Gauge`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_Gauge.sol##L8[contracts/curvefi/ICurveFi_Gauge.sol:8]_
+
+==== Methods
+
+===== `balanceOf`
+
+• `constant function balanceOf(address addr): (uint256)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_Gauge.sol##L13[contracts/curvefi/ICurveFi_Gauge.sol:13]_
+
+*_Parameters_*
+
+| Name | Type | | --------------------------------------------------- |
+--------- | --- | |
+link:contracts/curvefi/ICurveFi_Gauge.sol##L13[`addr`] | `address` | |
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------ |
+--------- | --- | | link:contracts/curvefi/ICurveFi_Gauge.sol##L13[`0`]
+| `uint256` | |
+
+'''''
+
+===== `claimable_tokens`
+
+• `function claimable_tokens(address addr): (uint256)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_Gauge.sol##L19[contracts/curvefi/ICurveFi_Gauge.sol:19]_
+
+*_Parameters_*
+
+| Name | Type | | --------------------------------------------------- |
+--------- | --- | |
+link:contracts/curvefi/ICurveFi_Gauge.sol##L19[`addr`] | `address` | |
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------ |
+--------- | --- | | link:contracts/curvefi/ICurveFi_Gauge.sol##L19[`0`]
+| `uint256` | |
+
+'''''
+
+===== `crv_token`
+
+• `constant function crv_token(): (address)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_Gauge.sol##L11[contracts/curvefi/ICurveFi_Gauge.sol:11]_
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------ |
+--------- | --- | | link:contracts/curvefi/ICurveFi_Gauge.sol##L11[`0`]
+| `address` | |
+
+'''''
+
+===== `deposit`
+
+• `function deposit(uint256 _value)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_Gauge.sol##L15[contracts/curvefi/ICurveFi_Gauge.sol:15]_
+
+*_Parameters_*
+
+| Name | Type | | -----------------------------------------------------
+| --------- | --- | |
+link:contracts/curvefi/ICurveFi_Gauge.sol##L15[`_value`] | `uint256` | |
+
+'''''
+
+===== `integrate_fraction`
+
+• `constant function integrate_fraction(address _for): (uint256)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_Gauge.sol##L23[contracts/curvefi/ICurveFi_Gauge.sol:23]_
+
+*_Parameters_*
+
+| Name | Type | | --------------------------------------------------- |
+--------- | --- | |
+link:contracts/curvefi/ICurveFi_Gauge.sol##L23[`_for`] | `address` | |
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------ |
+--------- | --- | | link:contracts/curvefi/ICurveFi_Gauge.sol##L23[`0`]
+| `uint256` | |
+
+'''''
+
+===== `lp_token`
+
+• `constant function lp_token(): (address)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_Gauge.sol##L9[contracts/curvefi/ICurveFi_Gauge.sol:9]_
+
+*_Returns_*
+
+| Name | Type | | ----------------------------------------------- |
+--------- | --- | | link:contracts/curvefi/ICurveFi_Gauge.sol##L9[`0`] |
+`address` | |
+
+'''''
+
+===== `minter`
+
+• `constant function minter(): (address)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_Gauge.sol##L21[contracts/curvefi/ICurveFi_Gauge.sol:21]_
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------ |
+--------- | --- | | link:contracts/curvefi/ICurveFi_Gauge.sol##L21[`0`]
+| `address` | |
+
+'''''
+
+===== `user_checkpoint`
+
+• `function user_checkpoint(address _for): (bool)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_Gauge.sol##L25[contracts/curvefi/ICurveFi_Gauge.sol:25]_
+
+*_Parameters_*
+
+| Name | Type | | --------------------------------------------------- |
+--------- | --- | |
+link:contracts/curvefi/ICurveFi_Gauge.sol##L25[`_for`] | `address` | |
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------ |
+------ | --- | | link:contracts/curvefi/ICurveFi_Gauge.sol##L25[`0`] |
+`bool` | |
+
+'''''
+
+===== `withdraw`
+
+• `function withdraw(uint256 _value)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_Gauge.sol##L17[contracts/curvefi/ICurveFi_Gauge.sol:17]_
+
+*_Parameters_*
+
+| Name | Type | | -----------------------------------------------------
+| --------- | --- | |
+link:contracts/curvefi/ICurveFi_Gauge.sol##L17[`_value`] | `uint256` | |
+
+=== interface `ICurveFi_Minter`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_Minter.sol##L8[contracts/curvefi/ICurveFi_Minter.sol:8]_
+
+==== Methods
+
+===== `mint`
+
+• `function mint(address gauge_addr)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_Minter.sol##L9[contracts/curvefi/ICurveFi_Minter.sol:9]_
+
+*_Parameters_*
+
+| Name | Type | |
+--------------------------------------------------------- | --------- |
+--- | | link:contracts/curvefi/ICurveFi_Minter.sol##L9[`gauge_addr`] |
+`address` | |
+
+'''''
+
+===== `mint_for`
+
+• `function mint_for(address gauge_addr, address _for)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_Minter.sol##L11[contracts/curvefi/ICurveFi_Minter.sol:11]_
+
+*_Parameters_*
+
+| Name | Type | |
+---------------------------------------------------------- | --------- |
+--- | | link:contracts/curvefi/ICurveFi_Minter.sol##L11[`gauge_addr`] |
+`address` | | | link:contracts/curvefi/ICurveFi_Minter.sol##L11[`_for`]
+| `address` | |
+
+'''''
+
+===== `minted`
+
+•
+`constant function minted(address _for, address gauge_addr): (uint256)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_Minter.sol##L13[contracts/curvefi/ICurveFi_Minter.sol:13]_
+
+*_Parameters_*
+
+| Name | Type | |
+---------------------------------------------------------- | --------- |
+--- | | link:contracts/curvefi/ICurveFi_Minter.sol##L13[`_for`] |
+`address` | | |
+link:contracts/curvefi/ICurveFi_Minter.sol##L13[`gauge_addr`] |
+`address` | |
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/curvefi/ICurveFi_Minter.sol##L13[`0`]
+| `uint256` | |
+
+'''''
+
+===== `toggle_approve_mint`
+
+• `function toggle_approve_mint(address minting_user)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_Minter.sol##L15[contracts/curvefi/ICurveFi_Minter.sol:15]_
+
+*_Parameters_*
+
+| Name | Type | |
+------------------------------------------------------------ | ---------
+| --- | |
+link:contracts/curvefi/ICurveFi_Minter.sol##L15[`minting_user`] |
+`address` | |
+
+'''''
+
+===== `token`
+
+• `constant function token(): (address)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_Minter.sol##L17[contracts/curvefi/ICurveFi_Minter.sol:17]_
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/curvefi/ICurveFi_Minter.sol##L17[`0`]
+| `address` | |
+
+=== interface `ICurveFi_SwapY`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_SwapY.sol##L8[contracts/curvefi/ICurveFi_SwapY.sol:8]_
+
+==== Methods
+
+===== `add_liquidity`
+
+• `function add_liquidity(uint256[4] amounts, uint256 min_mint_amount)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_SwapY.sol##L9[contracts/curvefi/ICurveFi_SwapY.sol:9]_
+
+*_Parameters_*
+
+| Name | Type | |
+------------------------------------------------------------- |
+------------ | --- | |
+link:contracts/curvefi/ICurveFi_SwapY.sol##L9[`amounts`] | `uint256[4]`
+| | | link:contracts/curvefi/ICurveFi_SwapY.sol##L9[`min_mint_amount`] |
+`uint256` | |
+
+'''''
+
+===== `balances`
+
+• `constant function balances(int128 i): (uint256)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_SwapY.sol##L17[contracts/curvefi/ICurveFi_SwapY.sol:17]_
+
+*_Parameters_*
+
+| Name | Type | | ------------------------------------------------ |
+-------- | --- | | link:contracts/curvefi/ICurveFi_SwapY.sol##L17[`i`] |
+`int128` | |
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------ |
+--------- | --- | | link:contracts/curvefi/ICurveFi_SwapY.sol##L17[`0`]
+| `uint256` | |
+
+'''''
+
+===== `calc_token_amount`
+
+•
+`constant function calc_token_amount(uint256[4] amounts, bool deposit): (uint256)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_SwapY.sol##L15[contracts/curvefi/ICurveFi_SwapY.sol:15]_
+
+*_Parameters_*
+
+| Name | Type | | ------------------------------------------------------
+| ------------ | --- | |
+link:contracts/curvefi/ICurveFi_SwapY.sol##L15[`amounts`] | `uint256[4]`
+| | | link:contracts/curvefi/ICurveFi_SwapY.sol##L15[`deposit`] | `bool`
+| |
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------ |
+--------- | --- | | link:contracts/curvefi/ICurveFi_SwapY.sol##L15[`0`]
+| `uint256` | |
+
+'''''
+
+===== `coins`
+
+• `constant function coins(int128 i): (address)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_SwapY.sol##L19[contracts/curvefi/ICurveFi_SwapY.sol:19]_
+
+*_Parameters_*
+
+| Name | Type | | ------------------------------------------------ |
+-------- | --- | | link:contracts/curvefi/ICurveFi_SwapY.sol##L19[`i`] |
+`int128` | |
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------ |
+--------- | --- | | link:contracts/curvefi/ICurveFi_SwapY.sol##L19[`0`]
+| `address` | |
+
+'''''
+
+===== `remove_liquidity`
+
+• `function remove_liquidity(uint256 _amount, uint256[4] min_amounts)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_SwapY.sol##L11[contracts/curvefi/ICurveFi_SwapY.sol:11]_
+
+*_Parameters_*
+
+| Name | Type | |
+---------------------------------------------------------- |
+------------ | --- | |
+link:contracts/curvefi/ICurveFi_SwapY.sol##L11[`_amount`] | `uint256` |
+| | link:contracts/curvefi/ICurveFi_SwapY.sol##L11[`min_amounts`] |
+`uint256[4]` | |
+
+'''''
+
+===== `remove_liquidity_imbalance`
+
+•
+`function remove_liquidity_imbalance(uint256[4] amounts, uint256 max_burn_amount)`
+
+  _Defined in
+link:contracts/curvefi/ICurveFi_SwapY.sol##L13[contracts/curvefi/ICurveFi_SwapY.sol:13]_
+
+*_Parameters_*
+
+| Name | Type | |
+-------------------------------------------------------------- |
+------------ | --- | |
+link:contracts/curvefi/ICurveFi_SwapY.sol##L13[`amounts`] | `uint256[4]`
+| | | link:contracts/curvefi/ICurveFi_SwapY.sol##L13[`max_burn_amount`]
+| `uint256` | |
+
+=== interface `IERC20`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L7[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol:7]_
+
+==== Events
+
+===== `Approval`
+
+• `event Approval(address owner, address spender, uint256 value)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L75[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol:75]_
+
+*_Parameters_*
+
+| Name | Type | Indexed | |
+--------------------------------------------------------------------------------------------------------
+| --------- | ------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L75[`owner`]
+| `address` | `true` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L75[`spender`]
+| `address` | `true` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L75[`value`]
+| `uint256` | `false` | |
+
+'''''
+
+===== `Transfer`
+
+• `event Transfer(address from, address to, uint256 value)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L69[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol:69]_
+
+*_Parameters_*
+
+| Name | Type | Indexed | |
+------------------------------------------------------------------------------------------------------
+| --------- | ------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L69[`from`]
+| `address` | `true` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L69[`to`]
+| `address` | `true` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L69[`value`]
+| `uint256` | `false` | |
+
+==== Methods
+
+===== `allowance`
+
+•
+`constant function allowance(address owner, address spender): (uint256)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L34[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol:34]_
+
+*_Parameters_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L34[`owner`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L34[`spender`]
+| `address` | |
+
+*_Returns_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L34[`0`]
+| `uint256` | |
+
+'''''
+
+===== `approve`
+
+• `function approve(address spender, uint256 amount): (bool)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L50[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol:50]_
+
+*_Parameters_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L50[`spender`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L50[`amount`]
+| `uint256` | |
+
+*_Returns_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------
+| ------ | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L50[`0`]
+| `bool` | |
+
+'''''
+
+===== `balanceOf`
+
+• `constant function balanceOf(address account): (uint256)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L16[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol:16]_
+
+*_Parameters_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L16[`account`]
+| `address` | |
+
+*_Returns_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L16[`0`]
+| `uint256` | |
+
+'''''
+
+===== `totalSupply`
+
+• `constant function totalSupply(): (uint256)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L11[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol:11]_
+
+*_Returns_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L11[`0`]
+| `uint256` | |
+
+'''''
+
+===== `transfer`
+
+• `function transfer(address recipient, uint256 amount): (bool)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L25[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol:25]_
+
+*_Parameters_*
+
+| Name | Type | |
+----------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L25[`recipient`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L25[`amount`]
+| `uint256` | |
+
+*_Returns_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------
+| ------ | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L25[`0`]
+| `bool` | |
+
+'''''
+
+===== `transferFrom`
+
+•
+`function transferFrom(address sender, address recipient, uint256 amount): (bool)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L61[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol:61]_
+
+*_Parameters_*
+
+| Name | Type | |
+----------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L61[`sender`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L61[`recipient`]
+| `address` | |
+
+*_Returns_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------
+| ------ | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L61[`0`]
+| `bool` | |
+
+=== contract `IYERC20`
+
+  _Defined in
+link:contracts/curvefi/IYERC20.sol##L3[contracts/curvefi/IYERC20.sol:3]_
+
+==== Methods
+
+===== `allowance`
+
+•
+`constant function allowance(address owner, address spender): (uint256)`
+
+  _Defined in
+link:contracts/curvefi/IYERC20.sol##L11[contracts/curvefi/IYERC20.sol:11]_
+
+*_Parameters_*
+
+| Name | Type | | ----------------------------------------------- |
+--------- | --- | | link:contracts/curvefi/IYERC20.sol##L11[`owner`] |
+`address` | | | link:contracts/curvefi/IYERC20.sol##L11[`spender`] |
+`address` | |
+
+*_Returns_*
+
+| Name | Type | | ----------------------------------------- | ---------
+| --- | | link:contracts/curvefi/IYERC20.sol##L11[`0`] | `uint256` | |
+
+'''''
+
+===== `approve`
+
+• `function approve(address spender, uint256 amount): (bool)`
+
+  _Defined in
+link:contracts/curvefi/IYERC20.sol##L13[contracts/curvefi/IYERC20.sol:13]_
+
+*_Parameters_*
+
+| Name | Type | | ----------------------------------------------- |
+--------- | --- | | link:contracts/curvefi/IYERC20.sol##L13[`spender`] |
+`address` | | | link:contracts/curvefi/IYERC20.sol##L13[`amount`] |
+`uint256` | |
+
+*_Returns_*
+
+| Name | Type | | ----------------------------------------- | ------ |
+--- | | link:contracts/curvefi/IYERC20.sol##L13[`0`] | `bool` | |
+
+'''''
+
+===== `balanceOf`
+
+• `constant function balanceOf(address account): (uint256)`
+
+  _Defined in
+link:contracts/curvefi/IYERC20.sol##L7[contracts/curvefi/IYERC20.sol:7]_
+
+*_Parameters_*
+
+| Name | Type | | ---------------------------------------------- |
+--------- | --- | | link:contracts/curvefi/IYERC20.sol##L7[`account`] |
+`address` | |
+
+*_Returns_*
+
+| Name | Type | | ---------------------------------------- | --------- |
+--- | | link:contracts/curvefi/IYERC20.sol##L7[`0`] | `uint256` | |
+
+'''''
+
+===== `decimals`
+
+• `constant function decimals(): (uint8)`
+
+  _Defined in
+link:contracts/curvefi/IYERC20.sol##L25[contracts/curvefi/IYERC20.sol:25]_
+
+*_Returns_*
+
+| Name | Type | | ----------------------------------------- | ------- |
+--- | | link:contracts/curvefi/IYERC20.sol##L25[`0`] | `uint8` | |
+
+'''''
+
+===== `deposit`
+
+Y-token functions
+
+• `function deposit(uint256 amount)`
+
+  _Defined in
+link:contracts/curvefi/IYERC20.sol##L28[contracts/curvefi/IYERC20.sol:28]_
+
+*_Parameters_*
+
+| Name | Type | | ---------------------------------------------- |
+--------- | --- | | link:contracts/curvefi/IYERC20.sol##L28[`amount`] |
+`uint256` | |
+
+'''''
+
+===== `getPricePerFullShare`
+
+• `constant function getPricePerFullShare(): (uint256)`
+
+  _Defined in
+link:contracts/curvefi/IYERC20.sol##L32[contracts/curvefi/IYERC20.sol:32]_
+
+*_Returns_*
+
+| Name | Type | | ----------------------------------------- | ---------
+| --- | | link:contracts/curvefi/IYERC20.sol##L32[`0`] | `uint256` | |
+
+'''''
+
+===== `name`
+
+• `constant function name(): (string)`
+
+  _Defined in
+link:contracts/curvefi/IYERC20.sol##L21[contracts/curvefi/IYERC20.sol:21]_
+
+*_Returns_*
+
+| Name | Type | | ----------------------------------------- | -------- |
+--- | | link:contracts/curvefi/IYERC20.sol##L21[`0`] | `string` | |
+
+'''''
+
+===== `symbol`
+
+• `constant function symbol(): (string)`
+
+  _Defined in
+link:contracts/curvefi/IYERC20.sol##L23[contracts/curvefi/IYERC20.sol:23]_
+
+*_Returns_*
+
+| Name | Type | | ----------------------------------------- | -------- |
+--- | | link:contracts/curvefi/IYERC20.sol##L23[`0`] | `string` | |
+
+'''''
+
+===== `token`
+
+• `function token(): (address)`
+
+  _Defined in
+link:contracts/curvefi/IYERC20.sol##L34[contracts/curvefi/IYERC20.sol:34]_
+
+*_Returns_*
+
+| Name | Type | | ----------------------------------------- | ---------
+| --- | | link:contracts/curvefi/IYERC20.sol##L34[`0`] | `address` | |
+
+'''''
+
+===== `totalSupply`
+
+ERC20 functions
+
+• `constant function totalSupply(): (uint256)`
+
+  _Defined in
+link:contracts/curvefi/IYERC20.sol##L5[contracts/curvefi/IYERC20.sol:5]_
+
+*_Returns_*
+
+| Name | Type | | ---------------------------------------- | --------- |
+--- | | link:contracts/curvefi/IYERC20.sol##L5[`0`] | `uint256` | |
+
+'''''
+
+===== `transfer`
+
+• `function transfer(address recipient, uint256 amount): (bool)`
+
+  _Defined in
+link:contracts/curvefi/IYERC20.sol##L9[contracts/curvefi/IYERC20.sol:9]_
+
+*_Parameters_*
+
+| Name | Type | | ------------------------------------------------ |
+--------- | --- | | link:contracts/curvefi/IYERC20.sol##L9[`recipient`]
+| `address` | | | link:contracts/curvefi/IYERC20.sol##L9[`amount`] |
+`uint256` | |
+
+*_Returns_*
+
+| Name | Type | | ---------------------------------------- | ------ |
+--- | | link:contracts/curvefi/IYERC20.sol##L9[`0`] | `bool` | |
+
+'''''
+
+===== `transferFrom`
+
+•
+`function transferFrom(address sender, address recipient, uint256 amount): (bool)`
+
+  _Defined in
+link:contracts/curvefi/IYERC20.sol##L15[contracts/curvefi/IYERC20.sol:15]_
+
+*_Parameters_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/curvefi/IYERC20.sol##L16[`sender`] |
+`address` | | | link:contracts/curvefi/IYERC20.sol##L17[`recipient`] |
+`address` | |
+
+*_Returns_*
+
+| Name | Type | | ----------------------------------------- | ------ |
+--- | | link:contracts/curvefi/IYERC20.sol##L19[`0`] | `bool` | |
+
+'''''
+
+===== `withdraw`
+
+• `function withdraw(uint256 shares)`
+
+  _Defined in
+link:contracts/curvefi/IYERC20.sol##L30[contracts/curvefi/IYERC20.sol:30]_
+
+*_Parameters_*
+
+| Name | Type | | ---------------------------------------------- |
+--------- | --- | | link:contracts/curvefi/IYERC20.sol##L30[`shares`] |
+`uint256` | |
+
+=== contract `Initializable`
+
+  _Defined in
+link:node_modules/@openzeppelin/upgrades/contracts/Initializable.sol##L16[node_modules/@openzeppelin/upgrades/contracts/Initializable.sol:16]_
+
+=== contract `MinterRole`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L8[node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol:8]_
+
+==== Events
+
+===== `MinterAdded`
+
+• `event MinterAdded(address account)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L11[node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol:11]_
+
+*_Parameters_*
+
+| Name | Type | Indexed | |
+-------------------------------------------------------------------------------------------------------------
+| --------- | ------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L11[`account`]
+| `address` | `true` | |
+
+'''''
+
+===== `MinterRemoved`
+
+• `event MinterRemoved(address account)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L12[node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol:12]_
+
+*_Parameters_*
+
+| Name | Type | Indexed | |
+-------------------------------------------------------------------------------------------------------------
+| --------- | ------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L12[`account`]
+| `address` | `true` | |
+
+==== Methods
+
+===== `addMinter`
+
+• `function addMinter(address account)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L31[node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol:31]_
+
+*_Parameters_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L31[`account`]
+| `address` | |
+
+'''''
+
+===== `initialize`
+
+• `function initialize(address sender)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L16[node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol:16]_
+
+*_Parameters_*
+
+| Name | Type | |
+------------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L16[`sender`]
+| `address` | |
+
+'''''
+
+===== `isMinter`
+
+• `constant function isMinter(address account): (bool)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L27[node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol:27]_
+
+*_Parameters_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L27[`account`]
+| `address` | |
+
+*_Returns_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------------
+| ------ | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L27[`0`]
+| `bool` | |
+
+'''''
+
+===== `renounceMinter`
+
+• `function renounceMinter()`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L35[node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol:35]_
+
+=== library `Roles`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/Roles.sol##L7[node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/Roles.sol:7]_
+
+=== library `SafeERC20`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/SafeERC20.sol##L16[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/SafeERC20.sol:16]_
+
+=== library `SafeMath`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/math/SafeMath.sol##L16[node_modules/@openzeppelin/contracts-ethereum-package/contracts/math/SafeMath.sol:16]_
+
+=== contract `Stub_CurveFi_DepositY`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_DepositY.sol##L19[contracts/test/Stub_CurveFi_DepositY.sol:19]_
+
+==== Methods
+
+[[__curve]]
+===== `__curve`
+
+Curve.Fi Swap address
+
+• `constant function __curve(): (address)` _(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_DepositY.sol##L26[contracts/test/Stub_CurveFi_DepositY.sol:26]_
+
+*_Returns_*
+
+| Name | Type | | ---------------------------------------------------- |
+--------- | --- | |
+link:contracts/test/Stub_CurveFi_DepositY.sol##L26[`0`] | `address` | |
+
+'''''
+
+[[__token]]
+===== `__token`
+
+Curve.Fi LP token
+
+• `constant function __token(): (address)` _(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_DepositY.sol##L28[contracts/test/Stub_CurveFi_DepositY.sol:28]_
+
+*_Returns_*
+
+| Name | Type | | ---------------------------------------------------- |
+--------- | --- | |
+link:contracts/test/Stub_CurveFi_DepositY.sol##L28[`0`] | `address` | |
+
+'''''
+
+===== `add_liquidity`
+
+• `function add_liquidity(uint256[4] uamounts, uint256 min_mint_amount)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_DepositY.sol##L46[contracts/test/Stub_CurveFi_DepositY.sol:46]_
+
+*_Parameters_*
+
+| Name | Type | |
+------------------------------------------------------------------ |
+------------ | --- | |
+link:contracts/test/Stub_CurveFi_DepositY.sol##L46[`uamounts`] |
+`uint256[4]` | | |
+link:contracts/test/Stub_CurveFi_DepositY.sol##L46[`min_mint_amount`] |
+`uint256` | |
+
+'''''
+
+===== `coins`
+
+• `constant function coins(int128 i): (address)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_DepositY.sol##L100[contracts/test/Stub_CurveFi_DepositY.sol:100]_
+
+*_Parameters_*
+
+| Name | Type | | -----------------------------------------------------
+| -------- | --- | |
+link:contracts/test/Stub_CurveFi_DepositY.sol##L100[`i`] | `int128` | |
+
+*_Returns_*
+
+| Name | Type | | -----------------------------------------------------
+| --------- | --- | |
+link:contracts/test/Stub_CurveFi_DepositY.sol##L100[`0`] | `address` | |
+
+'''''
+
+[[curve-1]]
+===== `curve`
+
+• `constant function curve(): (address)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_DepositY.sol##L112[contracts/test/Stub_CurveFi_DepositY.sol:112]_
+
+*_Returns_*
+
+| Name | Type | | -----------------------------------------------------
+| --------- | --- | |
+link:contracts/test/Stub_CurveFi_DepositY.sol##L112[`0`] | `address` | |
+
+'''''
+
+===== `initialize`
+
+•
+`function initialize(address[4] _coins, address[4] _underlying_coins, address _curve, address _token)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_DepositY.sol##L32[contracts/test/Stub_CurveFi_DepositY.sol:32]_
+
+*_Parameters_*
+
+| Name | Type | |
+-------------------------------------------------------------------- |
+------------ | --- | |
+link:contracts/test/Stub_CurveFi_DepositY.sol##L33[`_coins`] |
+`address[4]` | | |
+link:contracts/test/Stub_CurveFi_DepositY.sol##L34[`_underlying_coins`]
+| `address[4]` | | |
+link:contracts/test/Stub_CurveFi_DepositY.sol##L36[`_token`] | `address`
+| |
+
+'''''
+
+===== `N_COINS`
+
+• `constant function N_COINS(): (uint256)` _(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_DepositY.sol##L23[contracts/test/Stub_CurveFi_DepositY.sol:23]_
+
+*_Returns_*
+
+| Name | Type | | ---------------------------------------------------- |
+--------- | --- | |
+link:contracts/test/Stub_CurveFi_DepositY.sol##L23[`0`] | `uint256` | |
+
+'''''
+
+===== `remove_liquidity`
+
+• `function remove_liquidity(uint256 _amount, uint256[4] min_uamounts)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_DepositY.sol##L67[contracts/test/Stub_CurveFi_DepositY.sol:67]_
+
+*_Parameters_*
+
+| Name | Type | |
+--------------------------------------------------------------- |
+------------ | --- | |
+link:contracts/test/Stub_CurveFi_DepositY.sol##L67[`_amount`] |
+`uint256` | | |
+link:contracts/test/Stub_CurveFi_DepositY.sol##L67[`min_uamounts`] |
+`uint256[4]` | |
+
+'''''
+
+===== `remove_liquidity_imbalance`
+
+•
+`function remove_liquidity_imbalance(uint256[4] uamounts, uint256 max_burn_amount)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_DepositY.sol##L73[contracts/test/Stub_CurveFi_DepositY.sol:73]_
+
+*_Parameters_*
+
+| Name | Type | |
+------------------------------------------------------------------ |
+------------ | --- | |
+link:contracts/test/Stub_CurveFi_DepositY.sol##L73[`uamounts`] |
+`uint256[4]` | | |
+link:contracts/test/Stub_CurveFi_DepositY.sol##L73[`max_burn_amount`] |
+`uint256` | |
+
+'''''
+
+[[token-3]]
+===== `token`
+
+• `constant function token(): (address)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_DepositY.sol##L116[contracts/test/Stub_CurveFi_DepositY.sol:116]_
+
+*_Returns_*
+
+| Name | Type | | -----------------------------------------------------
+| --------- | --- | |
+link:contracts/test/Stub_CurveFi_DepositY.sol##L116[`0`] | `address` | |
+
+'''''
+
+===== `underlying_coins`
+
+• `constant function underlying_coins(): (address[4])`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_DepositY.sol##L108[contracts/test/Stub_CurveFi_DepositY.sol:108]_
+
+*_Returns_*
+
+| Name | Type | | -----------------------------------------------------
+| ------------ | --- | |
+link:contracts/test/Stub_CurveFi_DepositY.sol##L108[`0`] | `address[4]`
+| |
+
+'''''
+
+===== `underlying_coins`
+
+• `constant function underlying_coins(int128 i): (address)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_DepositY.sol##L104[contracts/test/Stub_CurveFi_DepositY.sol:104]_
+
+*_Parameters_*
+
+| Name | Type | | -----------------------------------------------------
+| -------- | --- | |
+link:contracts/test/Stub_CurveFi_DepositY.sol##L104[`i`] | `int128` | |
+
+*_Returns_*
+
+| Name | Type | | -----------------------------------------------------
+| --------- | --- | |
+link:contracts/test/Stub_CurveFi_DepositY.sol##L104[`0`] | `address` | |
+
+=== contract `Stub_CurveFi_Gauge`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L17[contracts/test/Stub_CurveFi_Gauge.sol:17]_
+
+==== Methods
+
+[[__crv_token]]
+===== `__crv_token`
+
+CRV token
+
+• `constant function __crv_token(): (address)` _(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L30[contracts/test/Stub_CurveFi_Gauge.sol:30]_
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_Gauge.sol##L30[`0`]
+| `address` | |
+
+'''''
+
+[[__integrate_fraction]]
+===== `__integrate_fraction`
+
+Total shares of CRV for the user
+
+• `constant function __integrate_fraction(address): (uint256)`
+_(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L39[contracts/test/Stub_CurveFi_Gauge.sol:39]_
+
+*_Parameters_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_Gauge.sol##L39[`0`]
+| `address` | |
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_Gauge.sol##L39[`0`]
+| `uint256` | |
+
+'''''
+
+[[__lp_token]]
+===== `__lp_token`
+
+LP-token from Curve pool
+
+• `constant function __lp_token(): (address)` _(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L33[contracts/test/Stub_CurveFi_Gauge.sol:33]_
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_Gauge.sol##L33[`0`]
+| `address` | |
+
+'''''
+
+[[__minter]]
+===== `__minter`
+
+CRV Minter contract
+
+• `constant function __minter(): (address)` _(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L27[contracts/test/Stub_CurveFi_Gauge.sol:27]_
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_Gauge.sol##L27[`0`]
+| `address` | |
+
+'''''
+
+[[_update_liquidity_limit]]
+===== `_update_liquidity_limit`
+
+• `function _update_liquidity_limit(address addr, uint256 l, uint256 L)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L139[contracts/test/Stub_CurveFi_Gauge.sol:139]_
+
+*_Parameters_*
+
+| Name | Type | | -----------------------------------------------------
+| --------- | --- | |
+link:contracts/test/Stub_CurveFi_Gauge.sol##L140[`addr`] | `address` | |
+| link:contracts/test/Stub_CurveFi_Gauge.sol##L141[`l`] | `uint256` | |
+
+'''''
+
+===== `balanceOf`
+
+• `constant function balanceOf(address): (uint256)` _(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L36[contracts/test/Stub_CurveFi_Gauge.sol:36]_
+
+*_Parameters_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_Gauge.sol##L36[`0`]
+| `address` | |
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_Gauge.sol##L36[`0`]
+| `uint256` | |
+
+'''''
+
+===== `claimable_tokens`
+
+Get CRV available for the user
+
+• `function claimable_tokens(address addr): (uint256)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L96[contracts/test/Stub_CurveFi_Gauge.sol:96]_
+
+*_Parameters_*
+
+| Name | Type | | ---------------------------------------------------- |
+--------- | --- | |
+link:contracts/test/Stub_CurveFi_Gauge.sol##L96[`addr`] | `address` | |
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_Gauge.sol##L96[`0`]
+| `uint256` | |
+
+'''''
+
+[[crv_token-1]]
+===== `crv_token`
+
+• `constant function crv_token(): (address)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L155[contracts/test/Stub_CurveFi_Gauge.sol:155]_
+
+*_Returns_*
+
+| Name | Type | | -------------------------------------------------- |
+--------- | --- | |
+link:contracts/test/Stub_CurveFi_Gauge.sol##L155[`0`] | `address` | |
+
+'''''
+
+===== `deposit`
+
+Deposit Curve LP tokens into the Gauge
+
+• `function deposit(uint256 _value)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L70[contracts/test/Stub_CurveFi_Gauge.sol:70]_
+
+*_Parameters_*
+
+| Name | Type | | ------------------------------------------------------
+| --------- | --- | |
+link:contracts/test/Stub_CurveFi_Gauge.sol##L70[`_value`] | `uint256` |
+|
+
+'''''
+
+===== `INITIAL_RATE`
+
+• `constant function INITIAL_RATE(): (uint256)` _(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L52[contracts/test/Stub_CurveFi_Gauge.sol:52]_
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_Gauge.sol##L52[`0`]
+| `uint256` | |
+
+'''''
+
+===== `initialize`
+
+• `function initialize(address lp_addr, address _minter)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L54[contracts/test/Stub_CurveFi_Gauge.sol:54]_
+
+*_Parameters_*
+
+| Name | Type | |
+------------------------------------------------------- | --------- |
+--- | | link:contracts/test/Stub_CurveFi_Gauge.sol##L54[`lp_addr`] |
+`address` | | |
+link:contracts/test/Stub_CurveFi_Gauge.sol##L54[`_minter`] | `address` |
+|
+
+'''''
+
+===== `integrate_checkpoint_of`
+
+• `constant function integrate_checkpoint_of(address): (uint256)`
+_(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L43[contracts/test/Stub_CurveFi_Gauge.sol:43]_
+
+*_Parameters_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_Gauge.sol##L43[`0`]
+| `address` | |
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_Gauge.sol##L43[`0`]
+| `uint256` | |
+
+'''''
+
+[[integrate_fraction-1]]
+===== `integrate_fraction`
+
+• `constant function integrate_fraction(address _for): (uint256)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L163[contracts/test/Stub_CurveFi_Gauge.sol:163]_
+
+*_Parameters_*
+
+| Name | Type | | -----------------------------------------------------
+| --------- | --- | |
+link:contracts/test/Stub_CurveFi_Gauge.sol##L163[`_for`] | `address` | |
+
+*_Returns_*
+
+| Name | Type | | -------------------------------------------------- |
+--------- | --- | |
+link:contracts/test/Stub_CurveFi_Gauge.sol##L163[`0`] | `uint256` | |
+
+'''''
+
+===== `integrate_inv_supply`
+
+• `constant function integrate_inv_supply(uint256): (uint256)`
+_(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L41[contracts/test/Stub_CurveFi_Gauge.sol:41]_
+
+*_Parameters_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_Gauge.sol##L41[`0`]
+| `uint256` | |
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_Gauge.sol##L41[`0`]
+| `uint256` | |
+
+'''''
+
+===== `integrate_inv_supply_of`
+
+• `constant function integrate_inv_supply_of(address): (uint256)`
+_(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L42[contracts/test/Stub_CurveFi_Gauge.sol:42]_
+
+*_Parameters_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_Gauge.sol##L42[`0`]
+| `address` | |
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_Gauge.sol##L42[`0`]
+| `uint256` | |
+
+'''''
+
+[[lp_token-1]]
+===== `lp_token`
+
+• `constant function lp_token(): (address)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L159[contracts/test/Stub_CurveFi_Gauge.sol:159]_
+
+*_Returns_*
+
+| Name | Type | | -------------------------------------------------- |
+--------- | --- | |
+link:contracts/test/Stub_CurveFi_Gauge.sol##L159[`0`] | `address` | |
+
+'''''
+
+[[minter-1]]
+===== `minter`
+
+• `constant function minter(): (address)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L151[contracts/test/Stub_CurveFi_Gauge.sol:151]_
+
+*_Returns_*
+
+| Name | Type | | -------------------------------------------------- |
+--------- | --- | |
+link:contracts/test/Stub_CurveFi_Gauge.sol##L151[`0`] | `address` | |
+
+'''''
+
+===== `TOKENLESS_PRODUCTION`
+
+• `constant function TOKENLESS_PRODUCTION(): (uint256)` _(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L48[contracts/test/Stub_CurveFi_Gauge.sol:48]_
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_Gauge.sol##L48[`0`]
+| `uint256` | |
+
+'''''
+
+===== `totalSupply`
+
+• `constant function totalSupply(): (uint256)` _(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L34[contracts/test/Stub_CurveFi_Gauge.sol:34]_
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_Gauge.sol##L34[`0`]
+| `uint256` | |
+
+'''''
+
+===== `user_checkpoint`
+
+• `function user_checkpoint(address addr): (bool)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L62[contracts/test/Stub_CurveFi_Gauge.sol:62]_
+
+*_Parameters_*
+
+| Name | Type | | ---------------------------------------------------- |
+--------- | --- | |
+link:contracts/test/Stub_CurveFi_Gauge.sol##L62[`addr`] | `address` | |
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+------ | --- | | link:contracts/test/Stub_CurveFi_Gauge.sol##L62[`0`] |
+`bool` | |
+
+'''''
+
+===== `withdraw`
+
+Withdraw Curve LP tokens back to the user
+
+• `function withdraw(uint256 _value)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L84[contracts/test/Stub_CurveFi_Gauge.sol:84]_
+
+*_Parameters_*
+
+| Name | Type | | ------------------------------------------------------
+| --------- | --- | |
+link:contracts/test/Stub_CurveFi_Gauge.sol##L84[`_value`] | `uint256` |
+|
+
+'''''
+
+===== `working_balances`
+
+• `constant function working_balances(address): (uint256)` _(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L45[contracts/test/Stub_CurveFi_Gauge.sol:45]_
+
+*_Parameters_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_Gauge.sol##L45[`0`]
+| `address` | |
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_Gauge.sol##L45[`0`]
+| `uint256` | |
+
+'''''
+
+===== `working_supply`
+
+• `constant function working_supply(): (uint256)` _(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L46[contracts/test/Stub_CurveFi_Gauge.sol:46]_
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_Gauge.sol##L46[`0`]
+| `uint256` | |
+
+'''''
+
+===== `YEAR`
+
+Rate taken from CRV
+
+• `constant function YEAR(): (uint256)` _(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Gauge.sol##L51[contracts/test/Stub_CurveFi_Gauge.sol:51]_
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_Gauge.sol##L51[`0`]
+| `uint256` | |
+
+=== contract `Stub_CurveFi_LPTokenY`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_LPTokenY.sol##L14[contracts/test/Stub_CurveFi_LPTokenY.sol:14]_
+
+==== Events
+
+===== `Approval`
+
+• `event Approval(address owner, address spender, uint256 value)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L75[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol:75]_
+
+*_Parameters_*
+
+| Name | Type | Indexed | |
+--------------------------------------------------------------------------------------------------------
+| --------- | ------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L75[`owner`]
+| `address` | `true` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L75[`spender`]
+| `address` | `true` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L75[`value`]
+| `uint256` | `false` | |
+
+'''''
+
+===== `MinterAdded`
+
+• `event MinterAdded(address account)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L11[node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol:11]_
+
+*_Parameters_*
+
+| Name | Type | Indexed | |
+-------------------------------------------------------------------------------------------------------------
+| --------- | ------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L11[`account`]
+| `address` | `true` | |
+
+'''''
+
+===== `MinterRemoved`
+
+• `event MinterRemoved(address account)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L12[node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol:12]_
+
+*_Parameters_*
+
+| Name | Type | Indexed | |
+-------------------------------------------------------------------------------------------------------------
+| --------- | ------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L12[`account`]
+| `address` | `true` | |
+
+'''''
+
+===== `Transfer`
+
+• `event Transfer(address from, address to, uint256 value)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L69[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol:69]_
+
+*_Parameters_*
+
+| Name | Type | Indexed | |
+------------------------------------------------------------------------------------------------------
+| --------- | ------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L69[`from`]
+| `address` | `true` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L69[`to`]
+| `address` | `true` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L69[`value`]
+| `uint256` | `false` | |
+
+==== Methods
+
+===== `addMinter`
+
+• `function addMinter(address account)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L31[node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol:31]_
+
+*_Parameters_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L31[`account`]
+| `address` | |
+
+'''''
+
+===== `allowance`
+
+•
+`constant function allowance(address owner, address spender): (uint256)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L72[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:72]_
+
+*_Parameters_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L72[`owner`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L72[`spender`]
+| `address` | |
+
+*_Returns_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L72[`0`]
+| `uint256` | |
+
+'''''
+
+===== `approve`
+
+• `function approve(address spender, uint256 amount): (bool)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L83[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:83]_
+
+*_Parameters_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L83[`spender`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L83[`amount`]
+| `uint256` | |
+
+*_Returns_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------
+| ------ | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L83[`0`]
+| `bool` | |
+
+'''''
+
+===== `balanceOf`
+
+• `constant function balanceOf(address account): (uint256)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L52[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:52]_
+
+*_Parameters_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L52[`account`]
+| `address` | |
+
+*_Returns_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L52[`0`]
+| `uint256` | |
+
+'''''
+
+===== `burn`
+
+• `function burn(uint256 amount)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Burnable.sol##L19[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Burnable.sol:19]_
+
+*_Parameters_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Burnable.sol##L19[`amount`]
+| `uint256` | |
+
+'''''
+
+===== `burnFrom`
+
+• `function burnFrom(address account, uint256 amount)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Burnable.sol##L26[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Burnable.sol:26]_
+
+*_Parameters_*
+
+| Name | Type | |
+---------------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Burnable.sol##L26[`account`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Burnable.sol##L26[`amount`]
+| `uint256` | |
+
+'''''
+
+===== `decimals`
+
+• `constant function decimals(): (uint8)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L52[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol:52]_
+
+*_Returns_*
+
+| Name | Type | |
+---------------------------------------------------------------------------------------------------------
+| ------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L52[`0`]
+| `uint8` | |
+
+'''''
+
+===== `decreaseAllowance`
+
+•
+`function decreaseAllowance(address spender, uint256 subtractedValue): (bool)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L137[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:137]_
+
+*_Parameters_*
+
+| Name | Type | |
+----------------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L137[`spender`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L137[`subtractedValue`]
+| `uint256` | |
+
+*_Returns_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------
+| ------ | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L137[`0`]
+| `bool` | |
+
+'''''
+
+===== `increaseAllowance`
+
+•
+`function increaseAllowance(address spender, uint256 addedValue): (bool)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L118[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:118]_
+
+*_Parameters_*
+
+| Name | Type | |
+-----------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L118[`spender`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L118[`addedValue`]
+| `uint256` | |
+
+*_Returns_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------
+| ------ | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L118[`0`]
+| `bool` | |
+
+'''''
+
+===== `initialize`
+
+• `function initialize()`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_LPTokenY.sol##L15[contracts/test/Stub_CurveFi_LPTokenY.sol:15]_
+
+'''''
+
+===== `initialize`
+
+• `function initialize(address sender)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Mintable.sol##L14[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Mintable.sol:14]_
+
+*_Parameters_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Mintable.sol##L14[`sender`]
+| `address` | |
+
+'''''
+
+===== `initialize`
+
+• `function initialize(string name, string symbol, uint8 decimals)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L19[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol:19]_
+
+*_Parameters_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------------------
+| -------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L19[`name`]
+| `string` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L19[`symbol`]
+| `string` | |
+
+'''''
+
+===== `isMinter`
+
+• `constant function isMinter(address account): (bool)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L27[node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol:27]_
+
+*_Parameters_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L27[`account`]
+| `address` | |
+
+*_Returns_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------------
+| ------ | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L27[`0`]
+| `bool` | |
+
+'''''
+
+===== `mint`
+
+• `function mint(address account, uint256 amount): (bool)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Mintable.sol##L25[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Mintable.sol:25]_
+
+*_Parameters_*
+
+| Name | Type | |
+---------------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Mintable.sol##L25[`account`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Mintable.sol##L25[`amount`]
+| `uint256` | |
+
+*_Returns_*
+
+| Name | Type | |
+---------------------------------------------------------------------------------------------------------
+| ------ | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Mintable.sol##L25[`0`]
+| `bool` | |
+
+'''''
+
+===== `name`
+
+• `constant function name(): (string)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L28[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol:28]_
+
+*_Returns_*
+
+| Name | Type | |
+---------------------------------------------------------------------------------------------------------
+| -------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L28[`0`]
+| `string` | |
+
+'''''
+
+===== `renounceMinter`
+
+• `function renounceMinter()`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L35[node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol:35]_
+
+'''''
+
+===== `symbol`
+
+• `constant function symbol(): (string)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L36[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol:36]_
+
+*_Returns_*
+
+| Name | Type | |
+---------------------------------------------------------------------------------------------------------
+| -------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L36[`0`]
+| `string` | |
+
+'''''
+
+===== `totalSupply`
+
+• `constant function totalSupply(): (uint256)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L45[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:45]_
+
+*_Returns_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L45[`0`]
+| `uint256` | |
+
+'''''
+
+===== `transfer`
+
+• `function transfer(address recipient, uint256 amount): (bool)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L64[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:64]_
+
+*_Parameters_*
+
+| Name | Type | |
+---------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L64[`recipient`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L64[`amount`]
+| `uint256` | |
+
+*_Returns_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------
+| ------ | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L64[`0`]
+| `bool` | |
+
+'''''
+
+===== `transferFrom`
+
+•
+`function transferFrom(address sender, address recipient, uint256 amount): (bool)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L100[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:100]_
+
+*_Parameters_*
+
+| Name | Type | |
+----------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L100[`sender`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L100[`recipient`]
+| `address` | |
+
+*_Returns_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------
+| ------ | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L100[`0`]
+| `bool` | |
+
+=== contract `Stub_CurveFi_Minter`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Minter.sol##L16[contracts/test/Stub_CurveFi_Minter.sol:16]_
+
+==== Methods
+
+[[__minted]]
+===== `__minted`
+
+• `constant function __minted(address, address): (uint256)`
+_(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Minter.sol##L17[contracts/test/Stub_CurveFi_Minter.sol:17]_
+
+*_Parameters_*
+
+| Name | Type | | -------------------------------------------------- |
+--------- | --- | |
+link:contracts/test/Stub_CurveFi_Minter.sol##L17[`0`] | `address` | | |
+link:contracts/test/Stub_CurveFi_Minter.sol##L17[`1`] | `address` | |
+
+*_Returns_*
+
+| Name | Type | | -------------------------------------------------- |
+--------- | --- | |
+link:contracts/test/Stub_CurveFi_Minter.sol##L17[`0`] | `uint256` | |
+
+'''''
+
+[[__token-1]]
+===== `__token`
+
+CRV token
+
+• `constant function __token(): (address)` _(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Minter.sol##L21[contracts/test/Stub_CurveFi_Minter.sol:21]_
+
+*_Returns_*
+
+| Name | Type | | -------------------------------------------------- |
+--------- | --- | |
+link:contracts/test/Stub_CurveFi_Minter.sol##L21[`0`] | `address` | |
+
+'''''
+
+===== `allowed_to_mint_for`
+
+• `constant function allowed_to_mint_for(address, address): (bool)`
+_(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Minter.sol##L18[contracts/test/Stub_CurveFi_Minter.sol:18]_
+
+*_Parameters_*
+
+| Name | Type | | -------------------------------------------------- |
+--------- | --- | |
+link:contracts/test/Stub_CurveFi_Minter.sol##L18[`0`] | `address` | | |
+link:contracts/test/Stub_CurveFi_Minter.sol##L18[`1`] | `address` | |
+
+*_Returns_*
+
+| Name | Type | | -------------------------------------------------- |
+------ | --- | | link:contracts/test/Stub_CurveFi_Minter.sol##L18[`0`] |
+`bool` | |
+
+'''''
+
+===== `initialize`
+
+• `function initialize(address _token)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Minter.sol##L23[contracts/test/Stub_CurveFi_Minter.sol:23]_
+
+*_Parameters_*
+
+| Name | Type | |
+------------------------------------------------------- | --------- |
+--- | | link:contracts/test/Stub_CurveFi_Minter.sol##L23[`_token`] |
+`address` | |
+
+'''''
+
+===== `mint`
+
+• `function mint(address gauge_addr)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Minter.sol##L27[contracts/test/Stub_CurveFi_Minter.sol:27]_
+
+*_Parameters_*
+
+| Name | Type | |
+----------------------------------------------------------- | ---------
+| --- | | link:contracts/test/Stub_CurveFi_Minter.sol##L27[`gauge_addr`]
+| `address` | |
+
+'''''
+
+===== `mint_for`
+
+• `function mint_for(address gauge_addr, address _for)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Minter.sol##L31[contracts/test/Stub_CurveFi_Minter.sol:31]_
+
+*_Parameters_*
+
+| Name | Type | |
+----------------------------------------------------------- | ---------
+| --- | | link:contracts/test/Stub_CurveFi_Minter.sol##L31[`gauge_addr`]
+| `address` | | |
+link:contracts/test/Stub_CurveFi_Minter.sol##L31[`_for`] | `address` | |
+
+'''''
+
+[[minted-1]]
+===== `minted`
+
+•
+`constant function minted(address _for, address gauge_addr): (uint256)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Minter.sol##L43[contracts/test/Stub_CurveFi_Minter.sol:43]_
+
+*_Parameters_*
+
+| Name | Type | |
+----------------------------------------------------------- | ---------
+| --- | | link:contracts/test/Stub_CurveFi_Minter.sol##L43[`_for`] |
+`address` | | |
+link:contracts/test/Stub_CurveFi_Minter.sol##L43[`gauge_addr`] |
+`address` | |
+
+*_Returns_*
+
+| Name | Type | | -------------------------------------------------- |
+--------- | --- | |
+link:contracts/test/Stub_CurveFi_Minter.sol##L43[`0`] | `uint256` | |
+
+'''''
+
+===== `toggle_approve_mint`
+
+• `function toggle_approve_mint(address minting_user)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Minter.sol##L35[contracts/test/Stub_CurveFi_Minter.sol:35]_
+
+*_Parameters_*
+
+| Name | Type | |
+------------------------------------------------------------- |
+--------- | --- | |
+link:contracts/test/Stub_CurveFi_Minter.sol##L35[`minting_user`] |
+`address` | |
+
+'''''
+
+[[token-4]]
+===== `token`
+
+• `constant function token(): (address)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_Minter.sol##L39[contracts/test/Stub_CurveFi_Minter.sol:39]_
+
+*_Returns_*
+
+| Name | Type | | -------------------------------------------------- |
+--------- | --- | |
+link:contracts/test/Stub_CurveFi_Minter.sol##L39[`0`] | `address` | |
+
+=== contract `Stub_CurveFi_SwapY`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_SwapY.sol##L20[contracts/test/Stub_CurveFi_SwapY.sol:20]_
+
+==== Methods
+
+[[__balances]]
+===== `__balances`
+
+• `constant function __balances(uint256): (uint256)` _(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_SwapY.sol##L27[contracts/test/Stub_CurveFi_SwapY.sol:27]_
+
+*_Parameters_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_SwapY.sol##L27[`0`]
+| `uint256` | |
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_SwapY.sol##L27[`0`]
+| `uint256` | |
+
+'''''
+
+[[__coins]]
+===== `__coins`
+
+• `constant function __coins(uint256): (address)` _(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_SwapY.sol##L28[contracts/test/Stub_CurveFi_SwapY.sol:28]_
+
+*_Parameters_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_SwapY.sol##L28[`0`]
+| `uint256` | |
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_SwapY.sol##L28[`0`]
+| `address` | |
+
+'''''
+
+[[__fee]]
+===== `__fee`
+
+• `constant function __fee(): (uint256)` _(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_SwapY.sol##L30[contracts/test/Stub_CurveFi_SwapY.sol:30]_
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_SwapY.sol##L30[`0`]
+| `uint256` | |
+
+'''''
+
+[[__token-2]]
+===== `__token`
+
+• `constant function __token(): (address)` _(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_SwapY.sol##L26[contracts/test/Stub_CurveFi_SwapY.sol:26]_
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_SwapY.sol##L26[`0`]
+| `address` | |
+
+'''''
+
+[[__underlying_coins]]
+===== `__underlying_coins`
+
+• `constant function __underlying_coins(uint256): (address)`
+_(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_SwapY.sol##L29[contracts/test/Stub_CurveFi_SwapY.sol:29]_
+
+*_Parameters_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_SwapY.sol##L29[`0`]
+| `uint256` | |
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_SwapY.sol##L29[`0`]
+| `address` | |
+
+'''''
+
+===== `A`
+
+• `constant function A(): (uint256)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_SwapY.sol##L192[contracts/test/Stub_CurveFi_SwapY.sol:192]_
+
+*_Returns_*
+
+| Name | Type | | -------------------------------------------------- |
+--------- | --- | |
+link:contracts/test/Stub_CurveFi_SwapY.sol##L192[`0`] | `uint256` | |
+
+'''''
+
+===== `add_liquidity`
+
+• `function add_liquidity(uint256[4] amounts, uint256 min_mint_amount)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_SwapY.sol##L46[contracts/test/Stub_CurveFi_SwapY.sol:46]_
+
+*_Parameters_*
+
+| Name | Type | |
+--------------------------------------------------------------- |
+------------ | --- | |
+link:contracts/test/Stub_CurveFi_SwapY.sol##L46[`amounts`] |
+`uint256[4]` | | |
+link:contracts/test/Stub_CurveFi_SwapY.sol##L46[`min_mint_amount`] |
+`uint256` | |
+
+'''''
+
+[[balances-1]]
+===== `balances`
+
+• `constant function balances(int128 i): (uint256)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_SwapY.sol##L188[contracts/test/Stub_CurveFi_SwapY.sol:188]_
+
+*_Parameters_*
+
+| Name | Type | | -------------------------------------------------- |
+-------- | --- | | link:contracts/test/Stub_CurveFi_SwapY.sol##L188[`i`]
+| `int128` | |
+
+*_Returns_*
+
+| Name | Type | | -------------------------------------------------- |
+--------- | --- | |
+link:contracts/test/Stub_CurveFi_SwapY.sol##L188[`0`] | `uint256` | |
+
+'''''
+
+===== `calc_token_amount`
+
+•
+`constant function calc_token_amount(uint256[4] amounts, bool deposit): (uint256)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_SwapY.sol##L103[contracts/test/Stub_CurveFi_SwapY.sol:103]_
+
+*_Parameters_*
+
+| Name | Type | |
+-------------------------------------------------------- | ------------
+| --- | | link:contracts/test/Stub_CurveFi_SwapY.sol##L103[`amounts`] |
+`uint256[4]` | | |
+link:contracts/test/Stub_CurveFi_SwapY.sol##L103[`deposit`] | `bool` | |
+
+*_Returns_*
+
+| Name | Type | | -------------------------------------------------- |
+--------- | --- | |
+link:contracts/test/Stub_CurveFi_SwapY.sol##L103[`0`] | `uint256` | |
+
+'''''
+
+[[coins-3]]
+===== `coins`
+
+• `constant function coins(int128 i): (address)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_SwapY.sol##L201[contracts/test/Stub_CurveFi_SwapY.sol:201]_
+
+*_Parameters_*
+
+| Name | Type | | -------------------------------------------------- |
+-------- | --- | | link:contracts/test/Stub_CurveFi_SwapY.sol##L201[`i`]
+| `int128` | |
+
+*_Returns_*
+
+| Name | Type | | -------------------------------------------------- |
+--------- | --- | |
+link:contracts/test/Stub_CurveFi_SwapY.sol##L201[`0`] | `address` | |
+
+'''''
+
+[[fee]]
+===== `fee`
+
+• `constant function fee(): (uint256)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_SwapY.sol##L197[contracts/test/Stub_CurveFi_SwapY.sol:197]_
+
+*_Returns_*
+
+| Name | Type | | -------------------------------------------------- |
+--------- | --- | |
+link:contracts/test/Stub_CurveFi_SwapY.sol##L197[`0`] | `uint256` | |
+
+'''''
+
+===== `initialize`
+
+•
+`function initialize(address[4] _coins, address[4] _underlying_coins, address _pool_token, uint256 _fee)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_SwapY.sol##L32[contracts/test/Stub_CurveFi_SwapY.sol:32]_
+
+*_Parameters_*
+
+| Name | Type | |
+----------------------------------------------------------------- |
+------------ | --- | |
+link:contracts/test/Stub_CurveFi_SwapY.sol##L33[`_coins`] | `address[4]`
+| | |
+link:contracts/test/Stub_CurveFi_SwapY.sol##L34[`_underlying_coins`] |
+`address[4]` | | |
+link:contracts/test/Stub_CurveFi_SwapY.sol##L36[`_fee`] | `uint256` | |
+
+'''''
+
+===== `N_COINS`
+
+• `constant function N_COINS(): (uint256)` _(generated)_
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_SwapY.sol##L23[contracts/test/Stub_CurveFi_SwapY.sol:23]_
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_CurveFi_SwapY.sol##L23[`0`]
+| `uint256` | |
+
+'''''
+
+===== `remove_liquidity`
+
+• `function remove_liquidity(uint256 _amount, uint256[4] min_amounts)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_SwapY.sol##L59[contracts/test/Stub_CurveFi_SwapY.sol:59]_
+
+*_Parameters_*
+
+| Name | Type | |
+----------------------------------------------------------- |
+------------ | --- | |
+link:contracts/test/Stub_CurveFi_SwapY.sol##L59[`_amount`] | `uint256` |
+| | link:contracts/test/Stub_CurveFi_SwapY.sol##L59[`min_amounts`] |
+`uint256[4]` | |
+
+'''''
+
+===== `remove_liquidity_imbalance`
+
+•
+`function remove_liquidity_imbalance(uint256[4] amounts, uint256 max_burn_amount)`
+
+  _Defined in
+link:contracts/test/Stub_CurveFi_SwapY.sol##L72[contracts/test/Stub_CurveFi_SwapY.sol:72]_
+
+*_Parameters_*
+
+| Name | Type | |
+--------------------------------------------------------------- |
+------------ | --- | |
+link:contracts/test/Stub_CurveFi_SwapY.sol##L72[`amounts`] |
+`uint256[4]` | | |
+link:contracts/test/Stub_CurveFi_SwapY.sol##L72[`max_burn_amount`] |
+`uint256` | |
+
+=== contract `Stub_ERC20`
+
+  _Defined in
+link:contracts/test/Stub_ERC20.sol##L7[contracts/test/Stub_ERC20.sol:7]_
+
+==== Events
+
+===== `Approval`
+
+• `event Approval(address owner, address spender, uint256 value)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L75[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol:75]_
+
+*_Parameters_*
+
+| Name | Type | Indexed | |
+--------------------------------------------------------------------------------------------------------
+| --------- | ------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L75[`owner`]
+| `address` | `true` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L75[`spender`]
+| `address` | `true` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L75[`value`]
+| `uint256` | `false` | |
+
+'''''
+
+===== `MinterAdded`
+
+• `event MinterAdded(address account)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L11[node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol:11]_
+
+*_Parameters_*
+
+| Name | Type | Indexed | |
+-------------------------------------------------------------------------------------------------------------
+| --------- | ------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L11[`account`]
+| `address` | `true` | |
+
+'''''
+
+===== `MinterRemoved`
+
+• `event MinterRemoved(address account)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L12[node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol:12]_
+
+*_Parameters_*
+
+| Name | Type | Indexed | |
+-------------------------------------------------------------------------------------------------------------
+| --------- | ------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L12[`account`]
+| `address` | `true` | |
+
+'''''
+
+===== `Transfer`
+
+• `event Transfer(address from, address to, uint256 value)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L69[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol:69]_
+
+*_Parameters_*
+
+| Name | Type | Indexed | |
+------------------------------------------------------------------------------------------------------
+| --------- | ------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L69[`from`]
+| `address` | `true` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L69[`to`]
+| `address` | `true` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L69[`value`]
+| `uint256` | `false` | |
+
+==== Methods
+
+===== `addMinter`
+
+• `function addMinter(address account)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L31[node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol:31]_
+
+*_Parameters_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L31[`account`]
+| `address` | |
+
+'''''
+
+===== `allowance`
+
+•
+`constant function allowance(address owner, address spender): (uint256)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L72[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:72]_
+
+*_Parameters_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L72[`owner`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L72[`spender`]
+| `address` | |
+
+*_Returns_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L72[`0`]
+| `uint256` | |
+
+'''''
+
+===== `approve`
+
+• `function approve(address spender, uint256 amount): (bool)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L83[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:83]_
+
+*_Parameters_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L83[`spender`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L83[`amount`]
+| `uint256` | |
+
+*_Returns_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------
+| ------ | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L83[`0`]
+| `bool` | |
+
+'''''
+
+===== `balanceOf`
+
+• `constant function balanceOf(address account): (uint256)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L52[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:52]_
+
+*_Parameters_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L52[`account`]
+| `address` | |
+
+*_Returns_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L52[`0`]
+| `uint256` | |
+
+'''''
+
+===== `decimals`
+
+• `constant function decimals(): (uint8)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L52[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol:52]_
+
+*_Returns_*
+
+| Name | Type | |
+---------------------------------------------------------------------------------------------------------
+| ------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L52[`0`]
+| `uint8` | |
+
+'''''
+
+===== `decreaseAllowance`
+
+•
+`function decreaseAllowance(address spender, uint256 subtractedValue): (bool)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L137[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:137]_
+
+*_Parameters_*
+
+| Name | Type | |
+----------------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L137[`spender`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L137[`subtractedValue`]
+| `uint256` | |
+
+*_Returns_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------
+| ------ | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L137[`0`]
+| `bool` | |
+
+'''''
+
+===== `increaseAllowance`
+
+•
+`function increaseAllowance(address spender, uint256 addedValue): (bool)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L118[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:118]_
+
+*_Parameters_*
+
+| Name | Type | |
+-----------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L118[`spender`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L118[`addedValue`]
+| `uint256` | |
+
+*_Returns_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------
+| ------ | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L118[`0`]
+| `bool` | |
+
+'''''
+
+===== `initialize`
+
+• `function initialize(string name, string symbol, uint8 decimals)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L19[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol:19]_
+
+*_Parameters_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------------------
+| -------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L19[`name`]
+| `string` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L19[`symbol`]
+| `string` | |
+
+'''''
+
+===== `initialize`
+
+•
+`function initialize(string _name, string _symbol, uint8 _decimals, uint256 _supply)`
+
+  _Defined in
+link:contracts/test/Stub_ERC20.sol##L8[contracts/test/Stub_ERC20.sol:8]_
+
+*_Parameters_*
+
+| Name | Type | | ----------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_ERC20.sol##L9[`_name`] |
+`string` | | | link:contracts/test/Stub_ERC20.sol##L10[`_symbol`] |
+`string` | | | link:contracts/test/Stub_ERC20.sol##L12[`_supply`] |
+`uint256` | |
+
+'''''
+
+===== `initialize`
+
+• `function initialize(address sender)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Mintable.sol##L14[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Mintable.sol:14]_
+
+*_Parameters_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Mintable.sol##L14[`sender`]
+| `address` | |
+
+'''''
+
+===== `isMinter`
+
+• `constant function isMinter(address account): (bool)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L27[node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol:27]_
+
+*_Parameters_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L27[`account`]
+| `address` | |
+
+*_Returns_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------------
+| ------ | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L27[`0`]
+| `bool` | |
+
+'''''
+
+===== `mint`
+
+• `function mint(address account, uint256 amount): (bool)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Mintable.sol##L25[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Mintable.sol:25]_
+
+*_Parameters_*
+
+| Name | Type | |
+---------------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Mintable.sol##L25[`account`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Mintable.sol##L25[`amount`]
+| `uint256` | |
+
+*_Returns_*
+
+| Name | Type | |
+---------------------------------------------------------------------------------------------------------
+| ------ | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Mintable.sol##L25[`0`]
+| `bool` | |
+
+'''''
+
+===== `name`
+
+• `constant function name(): (string)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L28[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol:28]_
+
+*_Returns_*
+
+| Name | Type | |
+---------------------------------------------------------------------------------------------------------
+| -------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L28[`0`]
+| `string` | |
+
+'''''
+
+===== `renounceMinter`
+
+• `function renounceMinter()`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol##L35[node_modules/@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol:35]_
+
+'''''
+
+===== `symbol`
+
+• `constant function symbol(): (string)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L36[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol:36]_
+
+*_Returns_*
+
+| Name | Type | |
+---------------------------------------------------------------------------------------------------------
+| -------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L36[`0`]
+| `string` | |
+
+'''''
+
+===== `totalSupply`
+
+• `constant function totalSupply(): (uint256)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L45[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:45]_
+
+*_Returns_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L45[`0`]
+| `uint256` | |
+
+'''''
+
+===== `transfer`
+
+• `function transfer(address recipient, uint256 amount): (bool)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L64[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:64]_
+
+*_Parameters_*
+
+| Name | Type | |
+---------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L64[`recipient`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L64[`amount`]
+| `uint256` | |
+
+*_Returns_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------
+| ------ | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L64[`0`]
+| `bool` | |
+
+'''''
+
+===== `transferFrom`
+
+•
+`function transferFrom(address sender, address recipient, uint256 amount): (bool)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L100[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:100]_
+
+*_Parameters_*
+
+| Name | Type | |
+----------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L100[`sender`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L100[`recipient`]
+| `address` | |
+
+*_Returns_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------
+| ------ | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L100[`0`]
+| `bool` | |
+
+=== contract `Stub_YERC20`
+
+  _Defined in
+link:contracts/test/Stub_YERC20.sol##L16[contracts/test/Stub_YERC20.sol:16]_
+
+==== Events
+
+===== `Approval`
+
+• `event Approval(address owner, address spender, uint256 value)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L75[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol:75]_
+
+*_Parameters_*
+
+| Name | Type | Indexed | |
+--------------------------------------------------------------------------------------------------------
+| --------- | ------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L75[`owner`]
+| `address` | `true` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L75[`spender`]
+| `address` | `true` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L75[`value`]
+| `uint256` | `false` | |
+
+'''''
+
+===== `Transfer`
+
+• `event Transfer(address from, address to, uint256 value)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L69[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol:69]_
+
+*_Parameters_*
+
+| Name | Type | Indexed | |
+------------------------------------------------------------------------------------------------------
+| --------- | ------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L69[`from`]
+| `address` | `true` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L69[`to`]
+| `address` | `true` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol##L69[`value`]
+| `uint256` | `false` | |
+
+==== Methods
+
+===== `allowance`
+
+•
+`constant function allowance(address owner, address spender): (uint256)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L72[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:72]_
+
+*_Parameters_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L72[`owner`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L72[`spender`]
+| `address` | |
+
+*_Returns_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L72[`0`]
+| `uint256` | |
+
+'''''
+
+===== `approve`
+
+• `function approve(address spender, uint256 amount): (bool)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L83[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:83]_
+
+*_Parameters_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L83[`spender`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L83[`amount`]
+| `uint256` | |
+
+*_Returns_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------
+| ------ | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L83[`0`]
+| `bool` | |
+
+'''''
+
+===== `balanceOf`
+
+• `constant function balanceOf(address account): (uint256)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L52[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:52]_
+
+*_Parameters_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L52[`account`]
+| `address` | |
+
+*_Returns_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L52[`0`]
+| `uint256` | |
+
+'''''
+
+===== `decimals`
+
+• `constant function decimals(): (uint8)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L52[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol:52]_
+
+*_Returns_*
+
+| Name | Type | |
+---------------------------------------------------------------------------------------------------------
+| ------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L52[`0`]
+| `uint8` | |
+
+'''''
+
+===== `decreaseAllowance`
+
+•
+`function decreaseAllowance(address spender, uint256 subtractedValue): (bool)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L137[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:137]_
+
+*_Parameters_*
+
+| Name | Type | |
+----------------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L137[`spender`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L137[`subtractedValue`]
+| `uint256` | |
+
+*_Returns_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------
+| ------ | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L137[`0`]
+| `bool` | |
+
+'''''
+
+===== `deposit`
+
+• `function deposit(uint256 amount)`
+
+  _Defined in
+link:contracts/test/Stub_YERC20.sol##L39[contracts/test/Stub_YERC20.sol:39]_
+
+*_Parameters_*
+
+| Name | Type | | ----------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_YERC20.sol##L39[`amount`] |
+`uint256` | |
+
+'''''
+
+===== `getPricePerFullShare`
+
+• `constant function getPricePerFullShare(): (uint256)`
+
+  _Defined in
+link:contracts/test/Stub_YERC20.sol##L55[contracts/test/Stub_YERC20.sol:55]_
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------ | ---------
+| --- | | link:contracts/test/Stub_YERC20.sol##L55[`0`] | `uint256` | |
+
+'''''
+
+===== `increaseAllowance`
+
+•
+`function increaseAllowance(address spender, uint256 addedValue): (bool)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L118[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:118]_
+
+*_Parameters_*
+
+| Name | Type | |
+-----------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L118[`spender`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L118[`addedValue`]
+| `uint256` | |
+
+*_Returns_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------
+| ------ | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L118[`0`]
+| `bool` | |
+
+'''''
+
+===== `initialize`
+
+• `function initialize(string name, string symbol, uint8 decimals)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L19[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol:19]_
+
+*_Parameters_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------------------
+| -------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L19[`name`]
+| `string` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L19[`symbol`]
+| `string` | |
+
+'''''
+
+===== `initialize`
+
+•
+`function initialize(address _underlying, string symb, uint8 uDecimals)`
+
+  _Defined in
+link:contracts/test/Stub_YERC20.sol##L24[contracts/test/Stub_YERC20.sol:24]_
+
+*_Parameters_*
+
+| Name | Type | | ---------------------------------------------------- |
+--------- | --- | |
+link:contracts/test/Stub_YERC20.sol##L25[`_underlying`] | `address` | |
+| link:contracts/test/Stub_YERC20.sol##L26[`symb`] | `string` | |
+
+'''''
+
+===== `name`
+
+• `constant function name(): (string)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L28[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol:28]_
+
+*_Returns_*
+
+| Name | Type | |
+---------------------------------------------------------------------------------------------------------
+| -------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L28[`0`]
+| `string` | |
+
+'''''
+
+===== `symbol`
+
+• `constant function symbol(): (string)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L36[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol:36]_
+
+*_Returns_*
+
+| Name | Type | |
+---------------------------------------------------------------------------------------------------------
+| -------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol##L36[`0`]
+| `string` | |
+
+'''''
+
+[[token-5]]
+===== `token`
+
+yToken functions
+
+• `function token(): (address)`
+
+  _Defined in
+link:contracts/test/Stub_YERC20.sol##L35[contracts/test/Stub_YERC20.sol:35]_
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------ | ---------
+| --- | | link:contracts/test/Stub_YERC20.sol##L35[`0`] | `address` | |
+
+'''''
+
+===== `totalSupply`
+
+• `constant function totalSupply(): (uint256)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L45[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:45]_
+
+*_Returns_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L45[`0`]
+| `uint256` | |
+
+'''''
+
+===== `transfer`
+
+• `function transfer(address recipient, uint256 amount): (bool)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L64[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:64]_
+
+*_Parameters_*
+
+| Name | Type | |
+---------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L64[`recipient`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L64[`amount`]
+| `uint256` | |
+
+*_Returns_*
+
+| Name | Type | |
+-------------------------------------------------------------------------------------------------
+| ------ | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L64[`0`]
+| `bool` | |
+
+'''''
+
+===== `transferFrom`
+
+•
+`function transferFrom(address sender, address recipient, uint256 amount): (bool)`
+
+  _Defined in
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L100[node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:100]_
+
+*_Parameters_*
+
+| Name | Type | |
+----------------------------------------------------------------------------------------------------------
+| --------- | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L100[`sender`]
+| `address` | | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L100[`recipient`]
+| `address` | |
+
+*_Returns_*
+
+| Name | Type | |
+--------------------------------------------------------------------------------------------------
+| ------ | --- | |
+link:node_modules/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol##L100[`0`]
+| `bool` | |
+
+'''''
+
+===== `underlying`
+
+• `constant function underlying(): (ERC20Mintable)` _(generated)_
+
+  _Defined in
+link:contracts/test/Stub_YERC20.sol##L21[contracts/test/Stub_YERC20.sol:21]_
+
+*_Returns_*
+
+| Name | Type | | ------------------------------------------ |
+--------------- | --- | | link:contracts/test/Stub_YERC20.sol##L21[`0`]
+| `ERC20Mintable` | |
+
+'''''
+
+===== `withdraw`
+
+• `function withdraw(uint256 shares)`
+
+  _Defined in
+link:contracts/test/Stub_YERC20.sol##L47[contracts/test/Stub_YERC20.sol:47]_
+
+*_Parameters_*
+
+| Name | Type | | ----------------------------------------------- |
+--------- | --- | | link:contracts/test/Stub_YERC20.sol##L47[`shares`] |
+`uint256` | |
+
+=== Usage
+
+=== Testing
+
+=== Support
