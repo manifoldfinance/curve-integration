@@ -18,10 +18,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           check-latest: true
-      - name: npm install, build, and test
+      - name: yarn install, build, and test
         run: |
-          npm install
-          npm run-scropt compile
-        
+          yarn
+          yarn run build
+          yarn run coverage
         env:
           CI: true
