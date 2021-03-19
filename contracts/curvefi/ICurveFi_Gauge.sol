@@ -10,17 +10,17 @@ interface ICurveFi_Gauge {
 
     function crv_token() external view returns (address);
 
-    function balanceOf(address addr) external view returns (uint256);
+    function balanceOf(address addr) external view returns (uint);
 
-    function deposit(uint256 _value) external;
+    function deposit(uint _value) external;
 
-    function withdraw(uint256 _value) external;
+    function withdraw(uint _value) external;
 
-    function claimable_tokens(address addr) external returns (uint256);
+    function claimable_tokens(address addr) external returns (uint);
 
     function minter() external view returns (address); //use minter().mint(gauge_addr) to claim CRV
 
-    function integrate_fraction(address _for) external view returns (uint256);
+    function integrate_fraction(address _for) external view returns (uint);
 
     function user_checkpoint(address _for) external returns (bool);
 }

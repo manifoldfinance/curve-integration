@@ -6,11 +6,11 @@ pragma solidity ^0.5.17;
  * https://github.com/curvefi/curve-contract/blob/master/contracts/pools/y/DepositY.vy
  */
 contract ICurveFi_DepositY {
-    function add_liquidity(uint256[4] calldata uamounts, uint256 min_mint_amount) external;
+    function add_liquidity(uint[4] calldata uamounts, uint min_mint_amount) external;
 
-    function remove_liquidity(uint256 _amount, uint256[4] calldata min_uamounts) external;
+    function remove_liquidity(uint _amount, uint[4] calldata min_uamounts) external;
 
-    function remove_liquidity_imbalance(uint256[4] calldata uamounts, uint256 max_burn_amount) external;
+    function remove_liquidity_imbalance(uint[4] calldata uamounts, uint max_burn_amount) external;
 
     function coins(int128 i) external view returns (address);
 

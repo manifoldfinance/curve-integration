@@ -9,7 +9,7 @@ contract Stub_ERC20 is ERC20, ERC20Detailed, ERC20Mintable {
         string memory _name,
         string memory _symbol,
         uint8 _decimals,
-        uint256 _supply
+        uint _supply
     ) public initializer {
         ERC20Detailed.initialize(_name, _symbol, _decimals);
         ERC20Mintable.initialize(_msgSender());

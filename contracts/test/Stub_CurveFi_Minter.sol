@@ -14,7 +14,7 @@ import "../curvefi/ICurveFi_Gauge.sol";
  * https://github.com/curvefi/curve-dao-contracts/blob/master/contracts/Minter.vy
  */
 contract Stub_CurveFi_Minter is Initializable, Context, ICurveFi_Minter {
-    mapping(address => mapping(address => uint256)) public __minted;
+    mapping(address => mapping(address => uint)) public __minted;
     mapping(address => mapping(address => bool)) public allowed_to_mint_for;
 
     //CRV token
@@ -40,14 +40,14 @@ contract Stub_CurveFi_Minter is Initializable, Context, ICurveFi_Minter {
         return __token;
     }
 
-    function minted(address _for, address gauge_addr) public view returns (uint256) {
+    function minted(address _for, address gauge_addr) public view returns (uint) {
         return __minted[_for][gauge_addr];
     }
 
     function _mint_for(address gauge_addr, address _for) internal {
         ICurveFi_Gauge(gauge_addr).user_checkpoint(_for);
-        uint256 total_mint = ICurveFi_Gauge(gauge_addr).integrate_fraction(_for);
-        uint256 to_mint = total_mint - __minted[_for][gauge_addr];
+        uint total_mint = ICurveFi_Gauge(gauge_addr).integrate_fraction(_for);
+        uint to_mint = total_mint - __minted[_for][gauge_addr];
 
         if (to_mint != 0) {
             ERC20Mintable(__token).mint(_for, to_mint);

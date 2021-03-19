@@ -14,12 +14,12 @@ import "../curvefi/IYERC20.sol";
  * @dev Simplified stub to imitate wrapped Y-token from yearn.finance
  */
 contract Stub_YERC20 is IYERC20, Initializable, Context, ERC20, ERC20Detailed {
-    uint256 constant EXP_SCALE = 1e18;
-    uint256 constant INITIAL_RATE = 1 * EXP_SCALE;
-    uint256 prev_time;
+    uint constant EXP_SCALE = 1e18;
+    uint constant INITIAL_RATE = 1 * EXP_SCALE;
+    uint prev_time;
 
     ERC20Mintable public underlying;
-    uint256 created;
+    uint created;
 
     function initialize(
         address _underlying,
@@ -36,28 +36,28 @@ contract Stub_YERC20 is IYERC20, Initializable, Context, ERC20, ERC20Detailed {
         return address(underlying);
     }
 
-    function deposit(uint256 amount) public {
+    function deposit(uint amount) public {
         underlying.transferFrom(_msgSender(), address(this), amount);
-        uint256 shares = amount.mul(EXP_SCALE).div(_exchangeRate());
+        uint shares = amount.mul(EXP_SCALE).div(_exchangeRate());
         _mint(_msgSender(), shares);
 
         prev_time = now;
     }
 
-    function withdraw(uint256 shares) public {
-        uint256 redeemAmount = shares.mul(_exchangeRate()).div(EXP_SCALE);
+    function withdraw(uint shares) public {
+        uint redeemAmount = shares.mul(_exchangeRate()).div(EXP_SCALE);
         _burn(_msgSender(), shares);
         _sendUnderlying(_msgSender(), redeemAmount);
 
         prev_time = now;
     }
 
-    function getPricePerFullShare() public view returns (uint256) {
+    function getPricePerFullShare() public view returns (uint) {
         return _exchangeRate();
     }
 
-    function _sendUnderlying(address recipient, uint256 amount) internal {
-        uint256 underlyingBalance = underlying.balanceOf(address(this));
+    function _sendUnderlying(address recipient, uint amount) internal {
+        uint underlyingBalance = underlying.balanceOf(address(this));
         if (amount > underlyingBalance) {
             underlying.mint(address(this), amount - underlyingBalance);
         }
@@ -65,8 +65,8 @@ contract Stub_YERC20 is IYERC20, Initializable, Context, ERC20, ERC20Detailed {
     }
 
     // Simplified calculation to imitate price changes
-    function _exchangeRate() internal view returns (uint256) {
-        uint256 sec = now.sub(prev_time) + 10;
+    function _exchangeRate() internal view returns (uint) {
+        uint sec = now.sub(prev_time) + 10;
         return INITIAL_RATE.add(INITIAL_RATE.mul(sec).div(365 days).div(EXP_SCALE));
     }
 }

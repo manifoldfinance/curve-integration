@@ -15,13 +15,13 @@ import "../curvefi/ICurveFi_Gauge.sol";
  * https://github.com/curvefi/curve-dao-contracts/blob/master/contracts/LiquidityGauge.vy
  */
 contract Stub_CurveFi_Gauge is ICurveFi_Gauge, Initializable, Context {
-    using SafeMath for uint256;
+    using SafeMath for uint;
 
     //CRV distribution number
     uint128 period;
 
     //Simplification to keep timestamp
-    uint256 period_timestamp;
+    uint period_timestamp;
 
     //CRV Minter contract
     address public __minter;
@@ -31,25 +31,25 @@ contract Stub_CurveFi_Gauge is ICurveFi_Gauge, Initializable, Context {
 
     //LP-token from Curve pool
     address public __lp_token;
-    uint256 public totalSupply;
+    uint public totalSupply;
 
-    mapping(address => uint256) public balanceOf;
+    mapping(address => uint) public balanceOf;
 
     //Total shares of CRV for the user
-    mapping(address => uint256) public __integrate_fraction;
+    mapping(address => uint) public __integrate_fraction;
 
-    mapping(uint256 => uint256) public integrate_inv_supply;
-    mapping(address => uint256) public integrate_inv_supply_of;
-    mapping(address => uint256) public integrate_checkpoint_of;
+    mapping(uint => uint) public integrate_inv_supply;
+    mapping(address => uint) public integrate_inv_supply_of;
+    mapping(address => uint) public integrate_checkpoint_of;
 
-    mapping(address => uint256) public working_balances;
-    uint256 public working_supply;
+    mapping(address => uint) public working_balances;
+    uint public working_supply;
 
-    uint256 public constant TOKENLESS_PRODUCTION = 40;
+    uint public constant TOKENLESS_PRODUCTION = 40;
 
     //Rate taken from CRV
-    uint256 public constant YEAR = 365 * 24 * 60 * 60;
-    uint256 public constant INITIAL_RATE = (274_815_283 * (10**18)) / YEAR;
+    uint public constant YEAR = 365 * 24 * 60 * 60;
+    uint public constant INITIAL_RATE = (274_815_283 * (10**18)) / YEAR;
 
     function initialize(address lp_addr, address _minter) public {
         __minter = _minter;
@@ -67,7 +67,7 @@ contract Stub_CurveFi_Gauge is ICurveFi_Gauge, Initializable, Context {
     }
 
     //Deposit Curve LP tokens into the Gauge
-    function deposit(uint256 _value) public {
+    function deposit(uint _value) public {
         _checkpoint(_msgSender());
 
         if (_value != 0) {
@@ -81,7 +81,7 @@ contract Stub_CurveFi_Gauge is ICurveFi_Gauge, Initializable, Context {
     }
 
     //Withdraw Curve LP tokens back to the user
-    function withdraw(uint256 _value) public {
+    function withdraw(uint _value) public {
         _checkpoint(_msgSender());
 
         balanceOf[_msgSender()] = balanceOf[_msgSender()].sub(_value);
@@ -93,22 +93,22 @@ contract Stub_CurveFi_Gauge is ICurveFi_Gauge, Initializable, Context {
     }
 
     //Get CRV available for the user
-    function claimable_tokens(address addr) external returns (uint256) {
+    function claimable_tokens(address addr) external returns (uint) {
         _checkpoint(addr);
         return __integrate_fraction[addr] - ICurveFi_Minter(__minter).minted(addr, address(this));
     }
 
     //Checkpoint for a user
     function _checkpoint(address addr) internal {
-        uint256 _integrate_inv_supply = integrate_inv_supply[period];
-        uint256 _working_balance = working_balances[addr];
-        uint256 _working_supply = working_supply;
+        uint _integrate_inv_supply = integrate_inv_supply[period];
+        uint _working_balance = working_balances[addr];
+        uint _working_supply = working_supply;
 
         // Update integral of 1/supply
         if (block.timestamp > period_timestamp) {
             //Originally rewards are minted with complex calculations for a week.
             //It is simplified to have weight equal 1 and  rate equal INITIAL_RATE and period in 1 block
-            uint256 dt = block.timestamp - period_timestamp;
+            uint dt = block.timestamp - period_timestamp;
 
             if (_working_supply > 0) {
                 _integrate_inv_supply += (INITIAL_RATE * dt) / _working_supply;
@@ -138,12 +138,12 @@ contract Stub_CurveFi_Gauge is ICurveFi_Gauge, Initializable, Context {
      */
     function _update_liquidity_limit(
         address addr,
-        uint256 l,
-        uint256 L
+        uint l,
+        uint L
     ) public {
-        uint256 lim = (l * TOKENLESS_PRODUCTION) / 100;
+        uint lim = (l * TOKENLESS_PRODUCTION) / 100;
 
-        uint256 old_bal = working_balances[addr];
+        uint old_bal = working_balances[addr];
         working_balances[addr] = lim;
         working_supply = working_supply + lim - old_bal;
     }
@@ -160,7 +160,7 @@ contract Stub_CurveFi_Gauge is ICurveFi_Gauge, Initializable, Context {
         return __lp_token;
     }
 
-    function integrate_fraction(address _for) public view returns (uint256) {
+    function integrate_fraction(address _for) public view returns (uint) {
         return __integrate_fraction[_for];
     }
 }

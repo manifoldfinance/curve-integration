@@ -17,10 +17,10 @@ import "../curvefi/IYERC20.sol";
  * https://github.com/curvefi/curve-contract/blob/master/contracts/pools/y/DepositY.vy
  */
 contract Stub_CurveFi_DepositY is ICurveFi_DepositY, Initializable, Context {
-    using SafeMath for uint256;
+    using SafeMath for uint;
     using SafeERC20 for IERC20;
 
-    uint256 public constant N_COINS = 4;
+    uint public constant N_COINS = 4;
 
     //Curve.Fi Swap address
     address public __curve;
@@ -37,16 +37,16 @@ contract Stub_CurveFi_DepositY is ICurveFi_DepositY, Initializable, Context {
     ) public initializer {
         __curve = _curve;
         __token = _token;
-        for (uint256 i = 0; i < N_COINS; i++) {
+        for (uint i = 0; i < N_COINS; i++) {
             __coins[i] = _coins[i];
             __underlying[i] = _underlying_coins[i];
         }
     }
 
-    function add_liquidity(uint256[N_COINS] memory uamounts, uint256 min_mint_amount) public {
-        uint256[N_COINS] memory amounts = [uint256(0), uint256(0), uint256(0), uint256(0)];
+    function add_liquidity(uint[N_COINS] memory uamounts, uint min_mint_amount) public {
+        uint[N_COINS] memory amounts = [uint(0), uint(0), uint(0), uint(0)];
 
-        for (uint256 i = 0; i < uamounts.length; i++) {
+        for (uint i = 0; i < uamounts.length; i++) {
             if (uamounts[i] == 0) continue;
 
             IERC20(__underlying[i]).safeTransferFrom(_msgSender(), address(this), uamounts[i]);
@@ -60,28 +60,28 @@ contract Stub_CurveFi_DepositY is ICurveFi_DepositY, Initializable, Context {
         }
         ICurveFi_SwapY(__curve).add_liquidity(amounts, min_mint_amount);
 
-        uint256 tokens = IERC20(__token).balanceOf(address(this));
+        uint tokens = IERC20(__token).balanceOf(address(this));
         IERC20(__token).safeTransfer(_msgSender(), tokens);
     }
 
-    function remove_liquidity(uint256 _amount, uint256[N_COINS] memory min_uamounts) public {
+    function remove_liquidity(uint _amount, uint[N_COINS] memory min_uamounts) public {
         IERC20(__token).safeTransferFrom(_msgSender(), address(this), _amount);
-        ICurveFi_SwapY(__curve).remove_liquidity(_amount, [uint256(0), uint256(0), uint256(0), uint256(0)]);
+        ICurveFi_SwapY(__curve).remove_liquidity(_amount, [uint(0), uint(0), uint(0), uint(0)]);
         _send_all(_msgSender(), min_uamounts);
     }
 
-    function remove_liquidity_imbalance(uint256[N_COINS] memory uamounts, uint256 max_burn_amount) public {
-        uint256[N_COINS] memory amounts = [uint256(0), uint256(0), uint256(0), uint256(0)];
+    function remove_liquidity_imbalance(uint[N_COINS] memory uamounts, uint max_burn_amount) public {
+        uint[N_COINS] memory amounts = [uint(0), uint(0), uint(0), uint(0)];
 
-        for (uint256 i = 0; i < uamounts.length; i++) {
+        for (uint i = 0; i < uamounts.length; i++) {
             if (uamounts[i] > 0) {
-                uint256 rate = IYERC20(__coins[i]).getPricePerFullShare();
+                uint rate = IYERC20(__coins[i]).getPricePerFullShare();
                 amounts[i] = uamounts[i].mul(1e18).div(rate);
             }
         }
 
         //Transfrer max tokens in
-        uint256 _tokens = IERC20(__token).balanceOf(_msgSender());
+        uint _tokens = IERC20(__token).balanceOf(_msgSender());
         if (_tokens > max_burn_amount) _tokens = max_burn_amount;
 
         IERC20(__token).safeTransferFrom(_msgSender(), address(this), _tokens);
@@ -94,15 +94,15 @@ contract Stub_CurveFi_DepositY is ICurveFi_DepositY, Initializable, Context {
         IERC20(__token).safeTransfer(_msgSender(), _tokens);
 
         //Unwrap and transfer all the coins we've got
-        _send_all(_msgSender(), [uint256(0), uint256(0), uint256(0), uint256(0)]);
+        _send_all(_msgSender(), [uint(0), uint(0), uint(0), uint(0)]);
     }
 
     function coins(int128 i) public view returns (address) {
-        return __coins[uint256(i)];
+        return __coins[uint(i)];
     }
 
     function underlying_coins(int128 i) public view returns (address) {
-        return __underlying[uint256(i)];
+        return __underlying[uint(i)];
     }
 
     function underlying_coins() public view returns (address[N_COINS] memory) {
@@ -117,10 +117,10 @@ contract Stub_CurveFi_DepositY is ICurveFi_DepositY, Initializable, Context {
         return __token;
     }
 
-    function _send_all(address _addr, uint256[N_COINS] memory min_uamounts) internal {
-        for (uint256 i = 0; i < N_COINS; i++) {
+    function _send_all(address _addr, uint[N_COINS] memory min_uamounts) internal {
+        for (uint i = 0; i < N_COINS; i++) {
             address _coin = __coins[i];
-            uint256 _balance = IYERC20(_coin).balanceOf(address(this));
+            uint _balance = IYERC20(_coin).balanceOf(address(this));
 
             if (_balance == 0) {
                 //Do nothing for 0 coins
@@ -130,7 +130,7 @@ contract Stub_CurveFi_DepositY is ICurveFi_DepositY, Initializable, Context {
             IYERC20(_coin).withdraw(_balance);
 
             address _ucoin = __underlying[i];
-            uint256 _uamount = IERC20(_ucoin).balanceOf(address(this));
+            uint _uamount = IERC20(_ucoin).balanceOf(address(this));
             require(_uamount >= min_uamounts[i], "Not enough coins withdrawn in Deposit");
             IERC20(_ucoin).safeTransfer(_addr, _uamount);
         }
